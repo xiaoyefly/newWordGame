@@ -32,7 +32,7 @@ public class LMainManager : MonoBehaviour
         girdDataDict.Clear();
         InputWordDict.Clear();
         myScore=0;
-        txt_score_val.text = "score1:"+myScore.ToString();
+        txt_score_val.text = "score:"+myScore.ToString();
         UIUtil.UpdateWithTransfrom(node_item, (trans1, index1) =>
         {
             Transform tr_grid = trans1.Find("tr_grid");
