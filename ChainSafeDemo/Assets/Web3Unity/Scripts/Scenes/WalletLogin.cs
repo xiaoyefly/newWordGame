@@ -15,7 +15,8 @@ public class WalletLogin : MonoBehaviour
         if (PlayerPrefs.HasKey("RememberMe") && PlayerPrefs.HasKey("Account"))
             if (PlayerPrefs.GetInt("RememberMe") == 1 && PlayerPrefs.GetString("Account") != "")
                 // move to next scene
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                SceneManager.LoadScene("Main");
+                // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public async void OnLogin()
     {
@@ -41,7 +42,8 @@ public class WalletLogin : MonoBehaviour
                 PlayerPrefs.SetInt("RememberMe", 0);
             print("Account: " + account);
             // load next scene
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene("Main");
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
     public string SignVerifySignature(string signatureString, string originalMessage)

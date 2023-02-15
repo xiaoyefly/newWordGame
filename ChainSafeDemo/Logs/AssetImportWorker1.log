@@ -233,3 +233,163 @@ Received Import Request.
   path: Assets/Resources/dll.prefab
   artifactKey: Guid(55fea592f5275b84fae481aaaa15c311) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Resources/dll.prefab using Guid(55fea592f5275b84fae481aaaa15c311) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23f688eca11b31f70fb1e3cc950e8395') in 0.008004 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 4777.410091 seconds.
+  path: Assets/Scenes/Game_Profiles/PostProcessVolume Profile.asset
+  artifactKey: Guid(60c1f2678df45d345afbe46c660d4536) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game_Profiles/PostProcessVolume Profile.asset using Guid(60c1f2678df45d345afbe46c660d4536) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '905af10bc27ece3a8e458f625aa52eb6') in 0.068483 seconds 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.018764 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image F:\xiaoye\wordleGame\chainSafe\newWordleGame\ChainSafeDemo\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image F:\xiaoye\wordleGame\chainSafe\newWordleGame\ChainSafeDemo\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.04 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.897 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1898ms)
+		BeginReloadAssembly (391ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (30ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (191ms)
+		EndReloadAssembly (1371ms)
+			LoadAssemblies (137ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (401ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (55ms)
+			SetupLoadedEditorAssemblies (695ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (16ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (113ms)
+				ProcessInitializeOnLoadAttributes (476ms)
+				ProcessInitializeOnLoadMethodAttributes (73ms)
+				AfterProcessingInitializeOnLoad (15ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (18ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 4.04 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5806 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 51 unused Assets / (0.6 MB). Loaded Objects now: 6444.
+Memory consumption went from 244.0 MB to 243.4 MB.
+Total: 5.258700 ms (FindLiveObjects: 0.508500 ms CreateObjectMapping: 0.499200 ms MarkObjects: 3.875400 ms  DeleteObjects: 0.373900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.014419 seconds.
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image F:\xiaoye\wordleGame\chainSafe\newWordleGame\ChainSafeDemo\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image F:\xiaoye\wordleGame\chainSafe\newWordleGame\ChainSafeDemo\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Refreshing native plugins compatible for Editor in 1.12 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.630 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1631ms)
+		BeginReloadAssembly (174ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (6ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (52ms)
+		EndReloadAssembly (1335ms)
+			LoadAssemblies (114ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (364ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (49ms)
+			SetupLoadedEditorAssemblies (723ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (15ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (94ms)
+				ProcessInitializeOnLoadAttributes (520ms)
+				ProcessInitializeOnLoadMethodAttributes (79ms)
+				AfterProcessingInitializeOnLoad (13ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (19ms)
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 4.65 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 5807 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 51 unused Assets / (0.6 MB). Loaded Objects now: 6447.
+Memory consumption went from 244.0 MB to 243.5 MB.
+Total: 6.361900 ms (FindLiveObjects: 0.642800 ms CreateObjectMapping: 0.765400 ms MarkObjects: 4.446900 ms  DeleteObjects: 0.505200 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 637.585988 seconds.
+  path: Assets/Sprites/Chicken.png
+  artifactKey: Guid(6e722be6558ba694db3c0946a0336da6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Chicken.png using Guid(6e722be6558ba694db3c0946a0336da6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c182ceff4a321315a4c7d3f6980d9e41') in 0.102725 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000038 seconds.
+  path: Assets/Sprites/menuempty.png
+  artifactKey: Guid(660f184f3df0e0d44a30ab5fe11f20c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/menuempty.png using Guid(660f184f3df0e0d44a30ab5fe11f20c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '496385d022ffdf0612884c399a85fd04') in 0.160331 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000052 seconds.
+  path: Assets/Sprites/xbutton.png
+  artifactKey: Guid(622797c350d848d45bd9d1e61256b5f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/xbutton.png using Guid(622797c350d848d45bd9d1e61256b5f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a6e268a11d9485365545ee859ae91f5') in 0.016405 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000031 seconds.
+  path: Assets/Sprites/Coins.png
+  artifactKey: Guid(b96c47e74d1c4294c9f512224b9614ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/Coins.png using Guid(b96c47e74d1c4294c9f512224b9614ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e840bc24ff37292b95c9d553d780496d') in 0.029015 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000024 seconds.
+  path: Assets/Sprites/title.png
+  artifactKey: Guid(7b06131bd02fe03419845e066c5c4f50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/title.png using Guid(7b06131bd02fe03419845e066c5c4f50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f0a138f355a9ab1477abce6940ead8e') in 0.024704 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Sprites/rect-blank.png
+  artifactKey: Guid(441f1246a4cf96748bb68d52b84c2d2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Sprites/rect-blank.png using Guid(441f1246a4cf96748bb68d52b84c2d2f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5363e789ed019599203504fb47d1e07f') in 0.024271 seconds 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

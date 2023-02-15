@@ -199,6 +199,8 @@
      <Compile Include="Assets\Web3Unity\Scripts\Library\ChainSafeRPC\Contracts\Builders\FilterInput\FilterExtensions.cs" />
      <Compile Include="Assets\Web3Unity\Scripts\Library\ChainSafeRPC\Contracts\Contract.cs" />
      <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLGetTxStatus.cs" />
+     <Compile Include="Assets\Scripts\Main\LMainManager.cs" />
+     <Compile Include="Assets\Scripts\Util\UIUtil.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets\Web3Unity\Scripts\Prefabs\ERC721\legacyAll721" />
      <Folder Include="Assets\Web3Unity\Scripts\Prefabs\Minter\Model" />
@@ -226,6 +228,7 @@
      <Folder Include="Assets\Web3Unity\Prefabs\Minter\WebWallet" />
      <Folder Include="Assets\Meshtint Free Chicken Mega Toon Series\READ ME" />
      <Folder Include="Assets\Web3Unity\Scripts\Library\ChainSafeRPC\HDNode" />
+     <Folder Include="Assets\Scripts\Util" />
      <Folder Include="Assets\Web3Unity\Scripts\Library\ChainSafeRPC\SigningKey" />
      <Folder Include="Assets\Web3Unity\Scripts\Library\ChainSafeRPC\Transactions" />
      <Folder Include="Assets\Web3Unity\Scripts\Library\ETHEREUEM\Web3Wallet" />
@@ -290,6 +293,7 @@
      <Folder Include="Assets\Meshtint Free Chicken Mega Toon Series\PPP" />
      <Folder Include="Assets\Web3Unity\Scripts\Library\ETHEREUEM\IPFS" />
      <Folder Include="Assets\Scripts" />
+     <Folder Include="Assets\Scripts\Main" />
      <Folder Include="Assets\Web3Unity\Prefabs\Minter\WebGL" />
      <Folder Include="Assets\Scripts\Player" />
      <Folder Include="Assets\WebGLTemplates\Cronos_Defi_Wallet" />
@@ -1076,6 +1080,9 @@
      </Reference>
      <Reference Include="Unity.VisualScripting.State">
      <HintPath>F:\xiaoye\wordleGame\chainSafe\newWordleGame\ChainSafeDemo\Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
+     </Reference>
+     <Reference Include="Unity.2D.Sprite.Editor">
+     <HintPath>F:\xiaoye\wordleGame\chainSafe\newWordleGame\ChainSafeDemo\Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
      </Reference>
   </ItemGroup>
   <ItemGroup>

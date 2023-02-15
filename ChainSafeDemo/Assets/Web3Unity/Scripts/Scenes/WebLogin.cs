@@ -36,7 +36,8 @@ public class WebLogin : MonoBehaviour
         // reset login message
         SetConnectAccount("");
         // load next scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Main");
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void OnSkip()
@@ -44,7 +45,8 @@ public class WebLogin : MonoBehaviour
         // burner account for skipped sign in screen
         PlayerPrefs.SetString("Account", "");
         // move to next scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Main");
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
 #endif

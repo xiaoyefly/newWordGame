@@ -199,6 +199,8 @@
      <Compile Include="Assets\Web3Unity\Scripts\Library\ChainSafeRPC\Contracts\Builders\FilterInput\FilterExtensions.cs" />
      <Compile Include="Assets\Web3Unity\Scripts\Library\ChainSafeRPC\Contracts\Contract.cs" />
      <Compile Include="Assets\Web3Unity\Scripts\Prefabs\WebGL\WebGLGetTxStatus.cs" />
+     <Compile Include="Assets\Scripts\Main\LMainManager.cs" />
+     <Compile Include="Assets\Scripts\Util\UIUtil.cs" />
      <Reference Include="UnityEngine">
      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.16f1c1\Editor\Data\PlaybackEngines\WebGLSupport\Managed\UnityEngine.dll</HintPath>
      </Reference>
