@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{7fee0b9f-9b75-7aaf-ae96-7dc2f87099a7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.Player.csproj", "{5e33a64d-db5b-fcfc-d703-3594f374ee35}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.Player.csproj", "{302606fb-4855-ad25-39f6-db351fac65a9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainSafe_RPC_Tests", "ChainSafe_RPC_Tests.csproj", "{cd2c676d-2805-77bb-a2f1-457787323a1b}"
 EndProject
 Global
@@ -24,10 +20,6 @@ Global
 		{a9933855-3432-f6d7-30e0-f8354a70bbab}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7fee0b9f-9b75-7aaf-ae96-7dc2f87099a7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7fee0b9f-9b75-7aaf-ae96-7dc2f87099a7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5e33a64d-db5b-fcfc-d703-3594f374ee35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5e33a64d-db5b-fcfc-d703-3594f374ee35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{302606fb-4855-ad25-39f6-db351fac65a9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{302606fb-4855-ad25-39f6-db351fac65a9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{cd2c676d-2805-77bb-a2f1-457787323a1b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{cd2c676d-2805-77bb-a2f1-457787323a1b}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection

@@ -1,7 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GraphQlClient.Core;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 using Util;
 
@@ -15,6 +20,7 @@ public class LMainManager : MonoBehaviour
     public Text txt_restart_title;
     // public Button btn_restart;
     public Text txt_score_val;
+    public Button btn_query;
     private const int RowCount=5;//行数
     private const int ColCount=5;//列数
 
@@ -47,6 +53,9 @@ public class LMainManager : MonoBehaviour
         
         btn_restart.onClick.RemoveListener(OnClickRestart);
         btn_restart.onClick.AddListener(OnClickRestart);
+        
+        btn_query.onClick.RemoveListener(OnClickQuerry);
+        btn_query.onClick.AddListener(OnClickQuerry);
     }
     
     void Start()
@@ -187,4 +196,44 @@ public class LMainManager : MonoBehaviour
         }
         tr_restart.gameObject.SetActive(false);
     }
+    
+    //点击查询
+    void OnClickQuerry()
+    {
+        GetPokemons();
+    }
+    
+    public GraphApi pokemonReference;
+    public async void GetPokemons(){
+        //获得签证
+        // GraphApi.Query createUser = pokemonReference.GetQueryByName("loginGetMessage", GraphApi.Query.Type.Mutation);
+	       //
+        // createUser.SetArgs(new{input = new{domain = "cyberconnect.me", address = "0x803F69aE5f5D839071fcD712e25BF3c8c35B2664"}});
+	       //
+        // //Performs Post request to server
+        // UnityWebRequest request = await pokemonReference.Post(createUser);
+        // \
+        //获取关注
+        GraphApi.Query createUser = pokemonReference.GetQueryByName("getFollowingsByAddressEVM", GraphApi.Query.Type.Query);
+        
+        createUser.SetArgs(new{address = "0x591e0850a4D19045388F37E5D1BA9be411b22a57"});
+        
+        //Performs Post request to server
+        UnityWebRequest request = await pokemonReference.Post(createUser);
+
+        if (!request.isNetworkError)
+        {
+            string introspection = request.downloadHandler.text;
+            // var type = createUser.fields[0].GetType();
+            
+            JObject obj = JObject.Parse(introspection);
+
+            Array followings = (Array)obj["data"]["address"];
+
+            // Object schemaClass = JsonConvert.DeserializeObject<Object>(introspection);
+            // var etrfd = schemaClass["followings"];
+        }
+        
+    }
+    
 }
