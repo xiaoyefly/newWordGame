@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using GraphQlClient.Core;
+using Jint;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -213,27 +214,67 @@ public class LMainManager : MonoBehaviour
         // //Performs Post request to server
         // UnityWebRequest request = await pokemonReference.Post(createUser);
         // \
-        //获取关注
-        GraphApi.Query createUser = pokemonReference.GetQueryByName("getFollowingsByAddressEVM", GraphApi.Query.Type.Query);
         
-        createUser.SetArgs(new{address = "0x591e0850a4D19045388F37E5D1BA9be411b22a57"});
         
-        //Performs Post request to server
-        UnityWebRequest request = await pokemonReference.Post(createUser);
-
-        if (!request.isNetworkError)
-        {
-            string introspection = request.downloadHandler.text;
-            // var type = createUser.fields[0].GetType();
-            
-            JObject obj = JObject.Parse(introspection);
-
-            Array followings = (Array)obj["data"]["address"];
-
-            // Object schemaClass = JsonConvert.DeserializeObject<Object>(introspection);
-            // var etrfd = schemaClass["followings"];
-        }
+        // //获取关注
+        // GraphApi.Query createUser = pokemonReference.GetQueryByName("getFollowingsByAddressEVM", GraphApi.Query.Type.Query);
+        //
+        // createUser.SetArgs(new{address = "0x591e0850a4D19045388F37E5D1BA9be411b22a57"});
+        //
+        // //Performs Post request to server
+        // UnityWebRequest request = await pokemonReference.Post(createUser);
+        //
+        // if (!request.isNetworkError)
+        // {
+        //     string introspection = request.downloadHandler.text;
+        //     // var type = createUser.fields[0].GetType();
+        //     
+        //     JObject obj = JObject.Parse(introspection);
+        //
+        //     Array followings = (Array)obj["data"]["address"];
+        //
+        //     // Object schemaClass = JsonConvert.DeserializeObject<Object>(introspection);
+        //     // var etrfd = schemaClass["followings"];
+        // }
         
+        
+      //   Engine engine = new Engine();
+      //   engine.SetValue("log", new Action<object>(msg => Debug.Log(msg)));
+      //
+      //   engine.Execute(@"
+      //   var myVariable = 108;
+      //   log('Hello from Javascript! myVariable = '+myVariable);
+      // ");
+        
+        Engine engine = new Engine();
+        // 在引擎中执行 JavaScript 代码
+        // string followStr="cyberConnect.follow('0xD790D1711A9dCb3970F47fd775f2f9A2f0bCc348', handle);"
+//         engine.Execute(@"
+// const CyberConnect = require('@cyberlab/cyberconnect-v2').default;
+//
+// const { Env } = require('@cyberlab/cyberconnect-v2');
+//
+// const cyberConnect = new CyberConnect({
+//     namespace: 'CyberConnect',
+//     env: Env.Staging,
+//     provider: '42863c51-54dc-470f-a74e-71cd240fdc56',
+//     signingMessageEntity: 'CyberConnect' || your entity,
+// });
+// cyberConnect.follow('0xD790D1711A9dCb3970F47fd775f2f9A2f0bCc348', 'shiyu');
+// ");
+engine.Execute(@"
+//const CyberConnect = require('@cyberlab/cyberconnect-v2').default;
+const CyberConnect = require('Jint').default;
+
+const cyberConnect = new CyberConnect({
+    namespace: 'CyberConnect',
+    env: CyberConnect.Env.Production,
+    provider: '0x81446e7e8223C2dc28213c77a32DC8A204884a52',
+});
+cyberConnect.follow('0xD790D1711A9dCb3970F47fd775f2f9A2f0bCc348', 'shiyu');
+");
+        // engine.SetValue("log", new Action<object>(msg => Debug.Log(msg)));
+        // engine.Execute(File.ReadAllText(Application.dataPath +"/lib/cyberConnect/node_modules/@cyberlab/cyberconnect-v2/lib/cyberConnect.js"));
     }
     
 }
