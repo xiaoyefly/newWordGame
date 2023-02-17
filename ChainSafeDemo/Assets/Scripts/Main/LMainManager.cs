@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using GraphQlClient.Core;
 using Jint;
 using Newtonsoft.Json;
@@ -249,7 +250,8 @@ public class LMainManager : MonoBehaviour
         Engine engine = new Engine();
         // 在引擎中执行 JavaScript 代码
         // string followStr="cyberConnect.follow('0xD790D1711A9dCb3970F47fd775f2f9A2f0bCc348', handle);"
-//         engine.Execute(@"
+//         engine.Execute(File.ReadAllText($"Assets/lib/cyberConnect/node_modules/@cyberlab/cyberconnect-v2/lib/cyberConnect.js")); 
+//          engine.Execute(@"
 // const CyberConnect = require('@cyberlab/cyberconnect-v2').default;
 //
 // const { Env } = require('@cyberlab/cyberconnect-v2');
@@ -262,19 +264,76 @@ public class LMainManager : MonoBehaviour
 // });
 // cyberConnect.follow('0xD790D1711A9dCb3970F47fd775f2f9A2f0bCc348', 'shiyu');
 // ");
-engine.Execute(@"
-//const CyberConnect = require('@cyberlab/cyberconnect-v2').default;
-const CyberConnect = require('Jint').default;
-
-const cyberConnect = new CyberConnect({
-    namespace: 'CyberConnect',
-    env: CyberConnect.Env.Production,
-    provider: '0x81446e7e8223C2dc28213c77a32DC8A204884a52',
-});
-cyberConnect.follow('0xD790D1711A9dCb3970F47fd775f2f9A2f0bCc348', 'shiyu');
-");
+// engine.Execute(@"
+// var modules = {};
+//
+// function require(moduleName) {
+//   if (modules[moduleName]) {
+//     return modules[moduleName];
+//   }
+//
+//   var module = { exports: {} };
+//
+//   var moduleCode = '
+//  import CyberConnect, {
+//    Env
+//  } from '@cyberlab/cyberconnect-v2';
+//
+//  const cyberConnect = new CyberConnect({
+//    namespace: 'CyberConnect',
+//    env: Env.Production,
+//    provider: provider,
+//    signingMessageEntity: 'CyberConnect' ,
+//  });
+//  cyberConnect.follow('0xD790D1711A9dCb3970F47fd775f2f9A2f0bCc348', 'shiyu')
+//
+//
+// ';
+//   var exports = module.exports;
+//
+//   // Evaluate the module code
+//   (new Function('module', 'exports', moduleCode))(module, exports);
+//
+//   modules[moduleName] = module.exports;
+//
+//   return module.exports;
+// }
+// ");
+engine.Execute(File.ReadAllText($"Assets/lib/cyberConnect/node_modules/@cyberlab/cyberconnect-v2/lib/xiaoye.js")); 
+// engine.Execute(@"
+// import CyberConnect, {
+//   Env
+// } from '@cyberlab/cyberconnect-v2';
+//
+// const cyberConnect = new CyberConnect({
+//   namespace: 'CyberConnect',
+//   env: Env.Production,
+//   provider: provider,
+//   signingMessageEntity: 'CyberConnect' ,
+// });
+// cyberConnect.follow('0xD790D1711A9dCb3970F47fd775f2f9A2f0bCc348', 'shiyu');
+// ");
+// engine.Execute(@"
+// cyberConnect.follow('0xD790D1711A9dCb3970F47fd775f2f9A2f0bCc348', 'shiyu');
+// ");
+// jsli
         // engine.SetValue("log", new Action<object>(msg => Debug.Log(msg)));
-        // engine.Execute(File.ReadAllText(Application.dataPath +"/lib/cyberConnect/node_modules/@cyberlab/cyberconnect-v2/lib/cyberConnect.js"));
+        // IntPtr cyberConnectInstance = CyberConnect("CyberConnect", (int)Env.Production, "dac1e6e1-78ae-457f-8ba2-79366b503666", "CyberConnect");
+        // Follow(cyberConnectInstance, "0xD790D1711A9dCb3970F47fd775f2f9A2f0bCc348", "shiyu");
+        // // DestroyCyberConnectInstance(cyberConnectInstance);
     }
+    // [DllImport("cyberconnect.dll")]
+    // private static extern IntPtr CyberConnect(string namespaceStr, int env, string provider, string signingMessageEntity);
+    //
+    //
+    // [DllImport("cyberconnect.dll")]
+    // private static extern void Follow(IntPtr instance, string address, string handle);
+    // private static extern void DestroyCyberConnectInstance(IntPtr instance);
+
+   
     
+    public enum Env {
+        Staging ,
+        Production,
+    }
 }
