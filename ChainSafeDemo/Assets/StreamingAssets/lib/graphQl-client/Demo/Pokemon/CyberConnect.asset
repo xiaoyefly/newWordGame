@@ -1,0 +1,240 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ccf793b7ca1cc645b9cd36d753b8e3c, type: 3}
+  m_Name: CyberConnect
+  m_EditorClassIdentifier: 
+  url: https://api.cyberconnect.dev/testnet/
+  queries:
+  - name: getFollowingsByAddressEVM
+    type: 0
+    query: "query getFollowingsByAddressEVM{\n    address(  address :\"0x591e0850a4D19045388F37E5D1BA9be411b22a57\"
+      ){\n        followingCount\n        followings{\n            totalCount\n           
+      edges{\n                node{\n                    handle\n                   
+      address\n            }\n        }\n            pageInfo{\n                hasPreviousPage\n               
+      startCursor\n                hasNextPage\n            }\n        }\n    }\n}"
+    queryString: address
+    returnType: Address
+    queryOptions:
+    - node
+    - nodes
+    - linkedTwitter
+    - savedTweet
+    - essenceByFilter
+    - verifyEssenceMetadata
+    - profileByID
+    - profileByHandle
+    - profilesByIDs
+    - profilesByHandles
+    - profiles
+    - profileHandleEligibility
+    - relayActionStatus
+    - systemStatus
+    - syncedAt
+    - address
+    - batchGetAddresses
+    fields:
+    - index: 4
+      name: followingCount
+      type: Int
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: address
+        type: AddressEVM
+      - name: chainID
+        type: ChainID
+      - name: wallet
+        type: Wallet
+      - name: followings
+        type: FollowConnection
+      - name: followingCount
+        type: Int
+      hasChanged: 0
+    - index: 3
+      name: followings
+      type: FollowConnection
+      parentIndexes: 
+      hasSubField: 1
+      possibleFields:
+      - name: address
+        type: AddressEVM
+      - name: chainID
+        type: ChainID
+      - name: wallet
+        type: Wallet
+      - name: followings
+        type: FollowConnection
+      - name: followingCount
+        type: Int
+      hasChanged: 0
+    - index: 0
+      name: totalCount
+      type: Int
+      parentIndexes: 01000000
+      hasSubField: 0
+      possibleFields:
+      - name: totalCount
+        type: Int
+      - name: pageInfo
+        type: PageInfo
+      - name: edges
+        type: FollowEdge
+      hasChanged: 0
+    - index: 2
+      name: edges
+      type: FollowEdge
+      parentIndexes: 01000000
+      hasSubField: 1
+      possibleFields:
+      - name: totalCount
+        type: Int
+      - name: pageInfo
+        type: PageInfo
+      - name: edges
+        type: FollowEdge
+      hasChanged: 0
+    - index: 0
+      name: node
+      type: FollowStatus
+      parentIndexes: 0100000003000000
+      hasSubField: 1
+      possibleFields:
+      - name: node
+        type: FollowStatus
+      - name: cursor
+        type: Cursor
+      hasChanged: 0
+    - index: 1
+      name: handle
+      type: String
+      parentIndexes: 010000000300000004000000
+      hasSubField: 0
+      possibleFields:
+      - name: address
+        type: AddressEVM
+      - name: handle
+        type: String
+      - name: proof
+        type: Proof
+      hasChanged: 0
+    - index: 0
+      name: address
+      type: AddressEVM
+      parentIndexes: 010000000300000004000000
+      hasSubField: 0
+      possibleFields:
+      - name: address
+        type: AddressEVM
+      - name: handle
+        type: String
+      - name: proof
+        type: Proof
+      hasChanged: 0
+    - index: 1
+      name: pageInfo
+      type: PageInfo
+      parentIndexes: 01000000
+      hasSubField: 1
+      possibleFields:
+      - name: totalCount
+        type: Int
+      - name: pageInfo
+        type: PageInfo
+      - name: edges
+        type: FollowEdge
+      hasChanged: 0
+    - index: 1
+      name: hasPreviousPage
+      type: Boolean
+      parentIndexes: 0100000007000000
+      hasSubField: 0
+      possibleFields:
+      - name: hasNextPage
+        type: Boolean
+      - name: hasPreviousPage
+        type: Boolean
+      - name: startCursor
+        type: Cursor
+      - name: endCursor
+        type: Cursor
+      hasChanged: 0
+    - index: 2
+      name: startCursor
+      type: Cursor
+      parentIndexes: 0100000007000000
+      hasSubField: 0
+      possibleFields:
+      - name: hasNextPage
+        type: Boolean
+      - name: hasPreviousPage
+        type: Boolean
+      - name: startCursor
+        type: Cursor
+      - name: endCursor
+        type: Cursor
+      hasChanged: 0
+    - index: 0
+      name: hasNextPage
+      type: Boolean
+      parentIndexes: 0100000007000000
+      hasSubField: 0
+      possibleFields:
+      - name: hasNextPage
+        type: Boolean
+      - name: hasPreviousPage
+        type: Boolean
+      - name: startCursor
+        type: Cursor
+      - name: endCursor
+        type: Cursor
+      hasChanged: 0
+    isComplete: 1
+  mutations:
+  - name: loginGetMessage
+    type: 1
+    query: "mutation loginGetMessage{\n    loginGetMessage(  input :{ domain :\"cyberconnect.me\",
+      address :\"0x803F69aE5f5D839071fcD712e25BF3c8c35B2664\"} ){\n        message\n   
+      }\n}"
+    queryString: loginGetMessage
+    returnType: LoginGetMessageResult
+    queryOptions:
+    - createRegisterEssenceTypedData
+    - createCollectEssenceTypedData
+    - createSetEssenceDataTypedData
+    - registerSigningKey
+    - follow
+    - unfollow
+    - linkTwitter
+    - claimCyberProfileWithTwitter
+    - saveTweet
+    - tweetNonce
+    - loginGetMessage
+    - loginVerify
+    - claimCyberProfileWithPromoCode
+    - createCreateProfileTypedData
+    - createSetMetadataTypedData
+    - relay
+    - createSubscribeTypedData
+    - createSetSubscribeDataTypedData
+    fields:
+    - index: 0
+      name: message
+      type: String
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: message
+        type: String
+      hasChanged: 0
+    isComplete: 0
+  subscriptions: []
+  loading: 0
