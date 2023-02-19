@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2081573941}
-  m_IndirectSpecularColor: {r: 0.06900357, g: 0.15741245, b: 0.20067339, a: 1}
+  m_IndirectSpecularColor: {r: 0.28315157, g: 0.41407838, b: 0.460428, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -818,6 +818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bea78ab80fa084e629ac6dcaf38efce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cyberConnectReference: {fileID: 11400000, guid: 7a81b5183260940fcb909685d0dd0956, type: 2}
 --- !u!1 &2081573940
 GameObject:
   m_ObjectHideFlags: 0
@@ -977,11 +978,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f71f471cc0c7443b5d4093050831c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  txt_wallet_address: {fileID: 0}
-  node_item: {fileID: 0}
-  tr_restart: {fileID: 0}
-  btn_restart: {fileID: 0}
-  txt_restart_title: {fileID: 0}
-  txt_score_val: {fileID: 0}
-  btn_query: {fileID: 0}
-  pokemonReference: {fileID: 11400000, guid: 7a81b5183260940fcb909685d0dd0956, type: 2}

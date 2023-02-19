@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 [ExecuteInEditMode]
-public class UiMainWrap_node_itemWrap :  MonoBehaviour
+public class UIMainWrap_node_itemWrap :  MonoBehaviour
 {
     public UnityEngine.Transform  tr_grid;
 public UnityEngine.UI.Text  txt_word;

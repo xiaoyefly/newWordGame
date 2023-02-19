@@ -25,10 +25,10 @@ public class UIMain : UIBase
     private int curRow = 0;
     private int myScore = 0;
 
-    private UiMainWrap wrap;
+    private UIMainWrap wrap;
     public override void OnInit()
     {
-        wrap = transform.GetComponent<UiMainWrap>();
+        wrap = transform.GetComponent<UIMainWrap>();
         
         wrap.txt_wallet_address.text = PlayerPrefs.GetString("Account");
         girdDataDict.Clear();
@@ -50,8 +50,8 @@ public class UIMain : UIBase
         wrap.btn_restart.onClick.RemoveListener(OnClickRestart);
         wrap.btn_restart.onClick.AddListener(OnClickRestart);
         
-        wrap.btn_query.onClick.RemoveListener(OnClickQuerry);
-        wrap.btn_query.onClick.AddListener(OnClickQuerry);
+        wrap.btn_my_follow.onClick.RemoveListener(OnClickQuerry);
+        wrap.btn_my_follow.onClick.AddListener(OnClickQuerry);
     }
     
     void Start()
@@ -196,7 +196,9 @@ public class UIMain : UIBase
     //点击查询
     void OnClickQuerry()
     {
-        GetPokemons();
+        var hud = UIManager.Instance.GetHUD<UIRank>(UIManager.EViewPriority.HighRenderPriority);
+        hud.Reference.ShowView();
+        // GetPokemons();
     }
     
     public GraphApi pokemonReference;
@@ -408,7 +410,7 @@ public class UIMain : UIBase
         UnityWebRequest www = UnityWebRequest.Get(filePath);
         yield return www.SendWebRequest();
 
-        if (www.isHttpError)
+        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
         {
             Debug.LogError(www.error);
             yield break;
@@ -430,7 +432,7 @@ public class UIMain : UIBase
                 www = UnityWebRequest.Get(Path.Combine(Application.streamingAssetsPath, dependency));
                 yield return www.SendWebRequest();
 
-                if (www.isHttpError)
+                if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
                 {
                     Debug.LogError(www.error);
                     yield break;
@@ -486,7 +488,7 @@ cyberConnect.console.log('e');
     }
 
     
-    public void OnHidden()
-    {
-    }
+    // public void OnHidden()
+    // {
+    // }
 }

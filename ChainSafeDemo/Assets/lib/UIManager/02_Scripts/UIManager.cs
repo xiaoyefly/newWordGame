@@ -93,7 +93,19 @@ namespace PartySystems.UIParty
                 GameObject newPriorityObject = new GameObject(priority.ToString());
                 newPriorityObject.transform.SetParent(transform, false);
                 RectTransform rectTransform = newPriorityObject.AddComponent<RectTransform>();
-                rectTransform.sizeDelta = transform.GetComponent<RectTransform>().sizeDelta;
+                // rectTransform.sizeDelta = transform.GetComponent<RectTransform>().sizeDelta;
+                // rectTransform.anchorMin = Vector2.zero;
+                // rectTransform.anchorMax = Vector2.one;
+                // rectTransform.offsetMin = Vector2.zero;
+                // rectTransform.offsetMax = Vector2.zero;
+                RectTransform parentRect = transform.GetComponent<RectTransform>();
+                rectTransform.sizeDelta = new Vector2(1920, 1080);
+                RectTransform childRect = rectTransform;
+
+                float scaleX = parentRect.sizeDelta.x / 1920f;
+                float scaleY = parentRect.sizeDelta.y / 1080f;
+
+                childRect.localScale = new Vector3(scaleX, scaleY, 1f);
                 newPriorityObject.transform.SetSiblingIndex((int)priority);
                 
                 m_priorityParentDict.Add(priority, newPriorityObject.transform);
@@ -135,11 +147,32 @@ namespace PartySystems.UIParty
             
         }
 
+        private float _scaleX = 1;
+        private float _scaleY = 1;
         private void Update()
         {
+            if (transform != null)
+            {
+                RectTransform parentRect = transform.GetComponent<RectTransform>();
+                float scaleX = parentRect.sizeDelta.x / 1920f;
+                float scaleY = parentRect.sizeDelta.y / 1080f;
+
+                if (scaleX != _scaleX || scaleY != _scaleY)
+                {
+                    _scaleX = scaleX;
+                    _scaleY = scaleY;
+                    foreach (var VARIABLE in m_priorityParentDict)
+                    {
+                        RectTransform childRect = VARIABLE.Value.GetComponent<RectTransform>();
+                        childRect.localScale = new Vector3(_scaleX, _scaleY, 1f);
+                    }
+                }
+            }
+           
             for (int i = m_activeViews.Count - 1; i >= 0; i--)
             {
                 m_activeViews[i].Reference.UpdateView();
+                
             }
 
             for(int i = m_closingViews.Count - 1; i >= 0; i--)

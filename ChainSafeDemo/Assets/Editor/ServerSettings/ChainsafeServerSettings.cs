@@ -102,6 +102,10 @@ public class ChainSafeServerSettings : EditorWindow
             // assign script to prefab and instantiate then destroy after
             serverCheck = (GameObject)Resources.Load("dll", typeof(GameObject));
             GameObject serverCheckScript = (GameObject)Instantiate(serverCheck, new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
+            if (serverCheckScript.GetComponent<ServerCheck>() == null)
+            {
+                serverCheckScript.AddComponent<ServerCheck>();
+            }
             serverCheckScript.GetComponent<ServerCheck>().CheckProject();
             Debug.Log("Server Check Script: " + serverCheck);
         }
