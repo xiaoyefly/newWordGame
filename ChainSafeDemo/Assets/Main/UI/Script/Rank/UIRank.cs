@@ -75,56 +75,37 @@ public class UIRank : UIBase
                     {
                         var itemData = followedData.followings.edges[index1];
                         UIRankWrap_node_itemWrap nodeWrap = trans1.GetComponent<UIRankWrap_node_itemWrap>();
-                        // StartCoroutine(LCyberConnect.I.SendprofileByHandle(itemData.node.handle,(profileDaata)=>
+                        nodeWrap.txt_address.text =
+                            itemData.node.handle;
+                        // LCyberConnect.I.GetProfileByHandle(itemData.node.handle, (profileDaata) =>
                         // {
                         //     if (profileDaata != null)
                         //     {
                         //         if (profileDaata.owner != null)
                         //         {
                         //             nodeWrap.txt_address.text =
-                        //                 profileDaata.owner.address;
+                        //                 profileDaata.handle;
                         //         }
                         //         else
                         //         {
-                        //             nodeWrap.txt_address.text ="空地址";
+                        //             nodeWrap.txt_address.text = "空地址";
                         //         }
-                        //     
-                        //         string imgUrl=profileDaata.avatar;
-                        //         if (!string.IsNullOrEmpty(imgUrl))
-                        //         {
-                        //             StartCoroutine(LoadImage(nodeWrap.img_avata,imgUrl));
-                        //         }
+                        //
+                        //         // string imgUrl = profileDaata.avatar;
+                        //         // if (!string.IsNullOrEmpty(imgUrl))
+                        //         // {
+                        //         //     if (IsWebP(imgUrl))
+                        //         //     {
+                        //         //         StartCoroutine(LoadImageConvertToPNG(nodeWrap.img_avata, imgUrl));
+                        //         //     }
+                        //         //     else
+                        //         //     {
+                        //         //         StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                        //         //     }
+                        //         //  
+                        //         // }
                         //     }
-                        // }));
-                        LCyberConnect.I.GetProfileByHandle(itemData.node.handle, (profileDaata) =>
-                        {
-                            if (profileDaata != null)
-                            {
-                                if (profileDaata.owner != null)
-                                {
-                                    nodeWrap.txt_address.text =
-                                        profileDaata.owner.address;
-                                }
-                                else
-                                {
-                                    nodeWrap.txt_address.text = "空地址";
-                                }
-
-                                string imgUrl = profileDaata.avatar;
-                                if (!string.IsNullOrEmpty(imgUrl))
-                                {
-                                    if (IsWebP(imgUrl))
-                                    {
-                                        StartCoroutine(LoadImageConvertToPNG(nodeWrap.img_avata, imgUrl));
-                                    }
-                                    else
-                                    {
-                                        StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
-                                    }
-                                 
-                                }
-                            }
-                        });
+                        // });
 
                     },followedData.followingCount);
                 });
