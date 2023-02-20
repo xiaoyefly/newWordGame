@@ -16,21 +16,27 @@ public class WebLogin : MonoBehaviour
     private static extern void SetConnectAccount(string value);
 
     private int expirationTime;
-    private string account; 
+    private string account;
 
+    private bool CheckConnect = false;
     public void OnLogin()
     {
         Web3Connect();
-        OnConnected();
+        if (!CheckConnect)
+        {
+            OnConnected();
+        }
     }
 
     async private void OnConnected()
     {
+        CheckConnect = true;
         account = ConnectAccount();
         while (account == "") {
             await new WaitForSeconds(1f);
             account = ConnectAccount();
         };
+        CheckConnect = false;
         // save account for next scene
         PlayerPrefs.SetString("Account", account);
         // reset login message

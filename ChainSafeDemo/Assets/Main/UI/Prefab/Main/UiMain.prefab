@@ -1970,7 +1970,7 @@ GameObject:
   - component: {fileID: 6292276705515023394}
   - component: {fileID: 4401252883968810476}
   m_Layer: 5
-  m_Name: UiMain
+  m_Name: UIMain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
