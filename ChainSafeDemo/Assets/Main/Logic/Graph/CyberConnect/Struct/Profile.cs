@@ -16,7 +16,7 @@ namespace Main.Logic.CyberConnect
         public string handle;
         public Wallet owner;
         public string metadata;
-        public string avatar;
+        public string avatar="";
         public bool isPrimary;
         public SubscribeConnection subscribers;
         public int subscriberCount;

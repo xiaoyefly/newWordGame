@@ -1,0 +1,793 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ccf793b7ca1cc645b9cd36d753b8e3c, type: 3}
+  m_Name: CyberConnect
+  m_EditorClassIdentifier: 
+  url: https://api.cyberconnect.dev
+  queries:
+  - name: getFollowingsByAddressEVM
+    type: 0
+    query: "query getFollowingsByAddressEVM{\n    address{\n        followingCount\n       
+      followings{\n            totalCount\n            edges{\n                node{\n                   
+      handle\n                    address\n            }\n        }\n           
+      pageInfo{\n                hasPreviousPage\n                startCursor\n               
+      hasNextPage\n            }\n        }\n    }\n}"
+    queryString: address
+    returnType: Address
+    queryOptions:
+    - node
+    - nodes
+    - linkedTwitter
+    - savedTweet
+    - essenceByFilter
+    - verifyEssenceMetadata
+    - profileByID
+    - profileByHandle
+    - profilesByIDs
+    - profilesByHandles
+    - profiles
+    - profileHandleEligibility
+    - relayActionStatus
+    - systemStatus
+    - syncedAt
+    - address
+    - batchGetAddresses
+    fields:
+    - index: 4
+      name: followingCount
+      type: Int
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: address
+        type: AddressEVM
+      - name: chainID
+        type: ChainID
+      - name: wallet
+        type: Wallet
+      - name: followings
+        type: FollowConnection
+      - name: followingCount
+        type: Int
+      hasChanged: 0
+    - index: 3
+      name: followings
+      type: FollowConnection
+      parentIndexes: 
+      hasSubField: 1
+      possibleFields:
+      - name: address
+        type: AddressEVM
+      - name: chainID
+        type: ChainID
+      - name: wallet
+        type: Wallet
+      - name: followings
+        type: FollowConnection
+      - name: followingCount
+        type: Int
+      hasChanged: 0
+    - index: 0
+      name: totalCount
+      type: Int
+      parentIndexes: 01000000
+      hasSubField: 0
+      possibleFields:
+      - name: totalCount
+        type: Int
+      - name: pageInfo
+        type: PageInfo
+      - name: edges
+        type: FollowEdge
+      hasChanged: 0
+    - index: 2
+      name: edges
+      type: FollowEdge
+      parentIndexes: 01000000
+      hasSubField: 1
+      possibleFields:
+      - name: totalCount
+        type: Int
+      - name: pageInfo
+        type: PageInfo
+      - name: edges
+        type: FollowEdge
+      hasChanged: 0
+    - index: 0
+      name: node
+      type: FollowStatus
+      parentIndexes: 0100000003000000
+      hasSubField: 1
+      possibleFields:
+      - name: node
+        type: FollowStatus
+      - name: cursor
+        type: Cursor
+      hasChanged: 0
+    - index: 1
+      name: handle
+      type: String
+      parentIndexes: 010000000300000004000000
+      hasSubField: 0
+      possibleFields:
+      - name: address
+        type: AddressEVM
+      - name: handle
+        type: String
+      - name: proof
+        type: Proof
+      hasChanged: 0
+    - index: 0
+      name: address
+      type: AddressEVM
+      parentIndexes: 010000000300000004000000
+      hasSubField: 0
+      possibleFields:
+      - name: address
+        type: AddressEVM
+      - name: handle
+        type: String
+      - name: proof
+        type: Proof
+      hasChanged: 0
+    - index: 1
+      name: pageInfo
+      type: PageInfo
+      parentIndexes: 01000000
+      hasSubField: 1
+      possibleFields:
+      - name: totalCount
+        type: Int
+      - name: pageInfo
+        type: PageInfo
+      - name: edges
+        type: FollowEdge
+      hasChanged: 0
+    - index: 1
+      name: hasPreviousPage
+      type: Boolean
+      parentIndexes: 0100000007000000
+      hasSubField: 0
+      possibleFields:
+      - name: hasNextPage
+        type: Boolean
+      - name: hasPreviousPage
+        type: Boolean
+      - name: startCursor
+        type: Cursor
+      - name: endCursor
+        type: Cursor
+      hasChanged: 0
+    - index: 2
+      name: startCursor
+      type: Cursor
+      parentIndexes: 0100000007000000
+      hasSubField: 0
+      possibleFields:
+      - name: hasNextPage
+        type: Boolean
+      - name: hasPreviousPage
+        type: Boolean
+      - name: startCursor
+        type: Cursor
+      - name: endCursor
+        type: Cursor
+      hasChanged: 0
+    - index: 0
+      name: hasNextPage
+      type: Boolean
+      parentIndexes: 0100000007000000
+      hasSubField: 0
+      possibleFields:
+      - name: hasNextPage
+        type: Boolean
+      - name: hasPreviousPage
+        type: Boolean
+      - name: startCursor
+        type: Cursor
+      - name: endCursor
+        type: Cursor
+      hasChanged: 0
+    isComplete: 1
+  - name: profileByID
+    type: 0
+    query: "query profileByID{\n    profileByID{\n        id\n        profileID\n       
+      followerCount\n        avatar\n        owner{\n            address\n       
+      }\n    }\n}"
+    queryString: profileByID
+    returnType: Profile
+    queryOptions:
+    - node
+    - nodes
+    - post
+    - linkedTwitter
+    - savedTweet
+    - essenceByFilter
+    - verifyEssenceMetadata
+    - profileByID
+    - profileByHandle
+    - profilesByIDs
+    - profilesByHandles
+    - profiles
+    - profileHandleEligibility
+    - relayActionStatus
+    - systemStatus
+    - syncedAt
+    - address
+    - batchGetAddresses
+    fields:
+    - index: 0
+      name: id
+      type: ID
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: id
+        type: ID
+      - name: profileID
+        type: Int
+      - name: handle
+        type: String
+      - name: owner
+        type: Wallet
+      - name: metadata
+        type: String
+      - name: metadataInfo
+        type: MetadataDetail
+      - name: avatar
+        type: URL
+      - name: externalMetadataInfo
+        type: ExternalMetadataDetail
+      - name: mintingBlock
+        type: Int
+      - name: isPrimary
+        type: Boolean
+      - name: operators
+        type: AddressEVM
+      - name: essences
+        type: EssenceConnection
+      - name: subscribers
+        type: SubscribeConnection
+      - name: subscribeNFT
+        type: ContractAddressEVM
+      - name: subscribeMw
+        type: MiddlewareInfo
+      - name: namespace
+        type: Namespace
+      - name: subscriberCount
+        type: Int
+      - name: followers
+        type: FollowConnection
+      - name: followerCount
+        type: Int
+      - name: isSubscribedByMe
+        type: Boolean
+      - name: isFollowedByMe
+        type: Boolean
+      hasChanged: 0
+    - index: 1
+      name: profileID
+      type: Int
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: id
+        type: ID
+      - name: profileID
+        type: Int
+      - name: handle
+        type: String
+      - name: owner
+        type: Wallet
+      - name: metadata
+        type: String
+      - name: metadataInfo
+        type: MetadataDetail
+      - name: avatar
+        type: URL
+      - name: externalMetadataInfo
+        type: ExternalMetadataDetail
+      - name: mintingBlock
+        type: Int
+      - name: isPrimary
+        type: Boolean
+      - name: operators
+        type: AddressEVM
+      - name: essences
+        type: EssenceConnection
+      - name: subscribers
+        type: SubscribeConnection
+      - name: subscribeNFT
+        type: ContractAddressEVM
+      - name: subscribeMw
+        type: MiddlewareInfo
+      - name: namespace
+        type: Namespace
+      - name: subscriberCount
+        type: Int
+      - name: followers
+        type: FollowConnection
+      - name: followerCount
+        type: Int
+      - name: isSubscribedByMe
+        type: Boolean
+      - name: isFollowedByMe
+        type: Boolean
+      hasChanged: 0
+    - index: 18
+      name: followerCount
+      type: Int
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: id
+        type: ID
+      - name: profileID
+        type: Int
+      - name: handle
+        type: String
+      - name: owner
+        type: Wallet
+      - name: metadata
+        type: String
+      - name: metadataInfo
+        type: MetadataDetail
+      - name: avatar
+        type: URL
+      - name: externalMetadataInfo
+        type: ExternalMetadataDetail
+      - name: mintingBlock
+        type: Int
+      - name: isPrimary
+        type: Boolean
+      - name: operators
+        type: AddressEVM
+      - name: essences
+        type: EssenceConnection
+      - name: subscribers
+        type: SubscribeConnection
+      - name: subscribeNFT
+        type: ContractAddressEVM
+      - name: subscribeMw
+        type: MiddlewareInfo
+      - name: namespace
+        type: Namespace
+      - name: subscriberCount
+        type: Int
+      - name: followers
+        type: FollowConnection
+      - name: followerCount
+        type: Int
+      - name: isSubscribedByMe
+        type: Boolean
+      - name: isFollowedByMe
+        type: Boolean
+      hasChanged: 0
+    - index: 6
+      name: avatar
+      type: URL
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: id
+        type: ID
+      - name: profileID
+        type: Int
+      - name: handle
+        type: String
+      - name: owner
+        type: Wallet
+      - name: metadata
+        type: String
+      - name: metadataInfo
+        type: MetadataDetail
+      - name: avatar
+        type: URL
+      - name: externalMetadataInfo
+        type: ExternalMetadataDetail
+      - name: mintingBlock
+        type: Int
+      - name: isPrimary
+        type: Boolean
+      - name: operators
+        type: AddressEVM
+      - name: essences
+        type: EssenceConnection
+      - name: subscribers
+        type: SubscribeConnection
+      - name: subscribeNFT
+        type: ContractAddressEVM
+      - name: subscribeMw
+        type: MiddlewareInfo
+      - name: namespace
+        type: Namespace
+      - name: subscriberCount
+        type: Int
+      - name: followers
+        type: FollowConnection
+      - name: followerCount
+        type: Int
+      - name: isSubscribedByMe
+        type: Boolean
+      - name: isFollowedByMe
+        type: Boolean
+      hasChanged: 0
+    - index: 3
+      name: owner
+      type: Wallet
+      parentIndexes: 
+      hasSubField: 1
+      possibleFields:
+      - name: id
+        type: ID
+      - name: profileID
+        type: Int
+      - name: handle
+        type: String
+      - name: owner
+        type: Wallet
+      - name: metadata
+        type: String
+      - name: metadataInfo
+        type: MetadataDetail
+      - name: avatar
+        type: URL
+      - name: externalMetadataInfo
+        type: ExternalMetadataDetail
+      - name: mintingBlock
+        type: Int
+      - name: isPrimary
+        type: Boolean
+      - name: operators
+        type: AddressEVM
+      - name: essences
+        type: EssenceConnection
+      - name: subscribers
+        type: SubscribeConnection
+      - name: subscribeNFT
+        type: ContractAddressEVM
+      - name: subscribeMw
+        type: MiddlewareInfo
+      - name: namespace
+        type: Namespace
+      - name: subscriberCount
+        type: Int
+      - name: followers
+        type: FollowConnection
+      - name: followerCount
+        type: Int
+      - name: isSubscribedByMe
+        type: Boolean
+      - name: isFollowedByMe
+        type: Boolean
+      hasChanged: 0
+    - index: 1
+      name: address
+      type: AddressEVM
+      parentIndexes: 04000000
+      hasSubField: 0
+      possibleFields:
+      - name: id
+        type: ID
+      - name: address
+        type: AddressEVM
+      - name: chainID
+        type: ChainID
+      - name: primaryProfile
+        type: Profile
+      - name: profiles
+        type: ProfileConnection
+      - name: subscribings
+        type: SubscribeConnection
+      - name: collectedEssences
+        type: CollectConnection
+      - name: subscribingCount
+        type: Int
+      - name: feed
+        type: ERCTransferCard
+      - name: recommendation
+        type: Recommendation
+      - name: metadata
+        type: WalletMetadata
+      hasChanged: 0
+    isComplete: 1
+  - name: profileByHandle
+    type: 0
+    query: 
+    queryString: profileByHandle
+    returnType: Profile
+    queryOptions:
+    - node
+    - nodes
+    - post
+    - linkedTwitter
+    - savedTweet
+    - essenceByFilter
+    - verifyEssenceMetadata
+    - profileByID
+    - profileByHandle
+    - profilesByIDs
+    - profilesByHandles
+    - profiles
+    - profileHandleEligibility
+    - relayActionStatus
+    - systemStatus
+    - syncedAt
+    - address
+    - batchGetAddresses
+    fields:
+    - index: 0
+      name: id
+      type: ID
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: id
+        type: ID
+      - name: profileID
+        type: Int
+      - name: handle
+        type: String
+      - name: owner
+        type: Wallet
+      - name: metadata
+        type: String
+      - name: metadataInfo
+        type: MetadataDetail
+      - name: avatar
+        type: URL
+      - name: externalMetadataInfo
+        type: ExternalMetadataDetail
+      - name: mintingBlock
+        type: Int
+      - name: isPrimary
+        type: Boolean
+      - name: operators
+        type: AddressEVM
+      - name: essences
+        type: EssenceConnection
+      - name: subscribers
+        type: SubscribeConnection
+      - name: subscribeNFT
+        type: ContractAddressEVM
+      - name: subscribeMw
+        type: MiddlewareInfo
+      - name: namespace
+        type: Namespace
+      - name: subscriberCount
+        type: Int
+      - name: followers
+        type: FollowConnection
+      - name: followerCount
+        type: Int
+      - name: isSubscribedByMe
+        type: Boolean
+      - name: isFollowedByMe
+        type: Boolean
+      hasChanged: 0
+    - index: 2
+      name: handle
+      type: String
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: id
+        type: ID
+      - name: profileID
+        type: Int
+      - name: handle
+        type: String
+      - name: owner
+        type: Wallet
+      - name: metadata
+        type: String
+      - name: metadataInfo
+        type: MetadataDetail
+      - name: avatar
+        type: URL
+      - name: externalMetadataInfo
+        type: ExternalMetadataDetail
+      - name: mintingBlock
+        type: Int
+      - name: isPrimary
+        type: Boolean
+      - name: operators
+        type: AddressEVM
+      - name: essences
+        type: EssenceConnection
+      - name: subscribers
+        type: SubscribeConnection
+      - name: subscribeNFT
+        type: ContractAddressEVM
+      - name: subscribeMw
+        type: MiddlewareInfo
+      - name: namespace
+        type: Namespace
+      - name: subscriberCount
+        type: Int
+      - name: followers
+        type: FollowConnection
+      - name: followerCount
+        type: Int
+      - name: isSubscribedByMe
+        type: Boolean
+      - name: isFollowedByMe
+        type: Boolean
+      hasChanged: 0
+    - index: 3
+      name: owner
+      type: Wallet
+      parentIndexes: 
+      hasSubField: 1
+      possibleFields:
+      - name: id
+        type: ID
+      - name: profileID
+        type: Int
+      - name: handle
+        type: String
+      - name: owner
+        type: Wallet
+      - name: metadata
+        type: String
+      - name: metadataInfo
+        type: MetadataDetail
+      - name: avatar
+        type: URL
+      - name: externalMetadataInfo
+        type: ExternalMetadataDetail
+      - name: mintingBlock
+        type: Int
+      - name: isPrimary
+        type: Boolean
+      - name: operators
+        type: AddressEVM
+      - name: essences
+        type: EssenceConnection
+      - name: subscribers
+        type: SubscribeConnection
+      - name: subscribeNFT
+        type: ContractAddressEVM
+      - name: subscribeMw
+        type: MiddlewareInfo
+      - name: namespace
+        type: Namespace
+      - name: subscriberCount
+        type: Int
+      - name: followers
+        type: FollowConnection
+      - name: followerCount
+        type: Int
+      - name: isSubscribedByMe
+        type: Boolean
+      - name: isFollowedByMe
+        type: Boolean
+      hasChanged: 0
+    - index: 1
+      name: address
+      type: AddressEVM
+      parentIndexes: 02000000
+      hasSubField: 0
+      possibleFields:
+      - name: id
+        type: ID
+      - name: address
+        type: AddressEVM
+      - name: chainID
+        type: ChainID
+      - name: primaryProfile
+        type: Profile
+      - name: profiles
+        type: ProfileConnection
+      - name: subscribings
+        type: SubscribeConnection
+      - name: collectedEssences
+        type: CollectConnection
+      - name: subscribingCount
+        type: Int
+      - name: feed
+        type: ERCTransferCard
+      - name: recommendation
+        type: Recommendation
+      - name: metadata
+        type: WalletMetadata
+      hasChanged: 0
+    - index: 6
+      name: avatar
+      type: URL
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: id
+        type: ID
+      - name: profileID
+        type: Int
+      - name: handle
+        type: String
+      - name: owner
+        type: Wallet
+      - name: metadata
+        type: String
+      - name: metadataInfo
+        type: MetadataDetail
+      - name: avatar
+        type: URL
+      - name: externalMetadataInfo
+        type: ExternalMetadataDetail
+      - name: mintingBlock
+        type: Int
+      - name: isPrimary
+        type: Boolean
+      - name: operators
+        type: AddressEVM
+      - name: essences
+        type: EssenceConnection
+      - name: subscribers
+        type: SubscribeConnection
+      - name: subscribeNFT
+        type: ContractAddressEVM
+      - name: subscribeMw
+        type: MiddlewareInfo
+      - name: namespace
+        type: Namespace
+      - name: subscriberCount
+        type: Int
+      - name: followers
+        type: FollowConnection
+      - name: followerCount
+        type: Int
+      - name: isSubscribedByMe
+        type: Boolean
+      - name: isFollowedByMe
+        type: Boolean
+      hasChanged: 0
+    isComplete: 0
+  mutations:
+  - name: loginGetMessage
+    type: 1
+    query: "mutation loginGetMessage{\n    loginGetMessage(  input :{ domain :\"cyberconnect.me\",
+      address :\"0x803F69aE5f5D839071fcD712e25BF3c8c35B2664\"} ){\n        message\n   
+      }\n}"
+    queryString: loginGetMessage
+    returnType: LoginGetMessageResult
+    queryOptions:
+    - createRegisterEssenceTypedData
+    - createCollectEssenceTypedData
+    - createSetEssenceDataTypedData
+    - registerSigningKey
+    - follow
+    - unfollow
+    - linkTwitter
+    - claimCyberProfileWithTwitter
+    - saveTweet
+    - tweetNonce
+    - loginGetMessage
+    - loginVerify
+    - claimCyberProfileWithPromoCode
+    - createCreateProfileTypedData
+    - createSetMetadataTypedData
+    - relay
+    - createSubscribeTypedData
+    - createSetSubscribeDataTypedData
+    fields:
+    - index: 0
+      name: message
+      type: String
+      parentIndexes: 
+      hasSubField: 0
+      possibleFields:
+      - name: message
+        type: String
+      hasChanged: 0
+    isComplete: 0
+  subscriptions: []
+  loading: 0

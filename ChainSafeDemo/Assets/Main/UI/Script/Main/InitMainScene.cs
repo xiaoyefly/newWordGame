@@ -8,6 +8,7 @@ using UnityEngine;
 public class InitMainScene : MonoBehaviour
 {
     // Start is called before the first frame update
+    public List<GraphApi> GraphApiReferenceList = new List<GraphApi>();
     public GraphApi cyberConnectReference;
     void Start()
     {

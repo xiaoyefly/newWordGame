@@ -75,6 +75,14 @@ namespace GraphQlClient.Editor
                     query.name = EditorGUILayout.TextField($"{type} Name", query.name);
                     string[] options = query.queryOptions.ToArray();
                     if (String.IsNullOrEmpty(query.returnType)){
+                        if (index >= options.Length)
+                        {
+                            index = 0;
+                            if (GUILayout.Button("Delete")){
+                                graph.DeleteQuery(queryList, i);
+                            }
+                            continue;
+                        }
                         index = EditorGUILayout.Popup(type, index, options);
                         query.queryString = options[index];
                         EditorGUILayout.LabelField(options[index]);
@@ -108,7 +116,16 @@ namespace GraphQlClient.Editor
                         $"Return Type: {query.returnType}");
                     if (graph.CheckSubFields(query.returnType)){
                         if (GUILayout.Button("Create Field")){
-                            graph.GetQueryReturnType(query, options[index]);
+                            if (query != null && !string.IsNullOrEmpty(query.queryString))
+                            {
+                                graph.GetQueryReturnType(query, query.queryString);
+                            }
+                            else
+                            {
+                                graph.GetQueryReturnType(query, options[index]);
+                            }
+                            
+                           
                             graph.AddField(query, query.returnType);
                         }
                     }

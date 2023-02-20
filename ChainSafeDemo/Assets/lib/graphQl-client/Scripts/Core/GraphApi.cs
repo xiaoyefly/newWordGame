@@ -41,6 +41,9 @@ namespace GraphQlClient.Core
         public void SetAuthToken(string auth){
             authToken = auth;
         }
+        public string GetAuthToken(){
+            return authToken;
+        }
         public Query GetQueryByName(string queryName, Query.Type type){
             List<Query> querySearch;
             switch (type){
@@ -171,10 +174,18 @@ namespace GraphQlClient.Core
                 queries = new List<Query>();
             Query query = new Query{fields = new List<Field>(), queryOptions = new List<string>(), type = Query.Type.Query};
             
-            Introspection.SchemaClass.Data.Schema.Type queryType = schemaClass.data.__schema.types.Find((aType => aType.name == queryEndpoint));
-            for (int i = 0; i < queryType.fields.Count; i++){
-                query.queryOptions.Add(queryType.fields[i].name);
+            if (schemaClass == null || schemaClass.data == null || schemaClass.data.__schema == null || schemaClass.data?.__schema.types == null)
+            {
+                
             }
+            else
+            {
+                Introspection.SchemaClass.Data.Schema.Type queryType = schemaClass.data.__schema.types.Find((aType => aType.name == queryEndpoint));
+                for (int i = 0; i < queryType.fields.Count; i++){
+                    query.queryOptions.Add(queryType.fields[i].name);
+                }
+            }
+           
 
             queries.Add(query);
         }
@@ -222,7 +233,11 @@ namespace GraphQlClient.Core
         
 
         public bool CheckSubFields(string typeName){
-            Introspection.SchemaClass.Data.Schema.Type type = schemaClass.data.__schema.types.Find((aType => aType.name == typeName));
+            if (schemaClass == null || schemaClass.data == null || schemaClass.data.__schema == null || schemaClass.data?.__schema.types == null)
+            {
+                return false;
+            }
+            Introspection.SchemaClass.Data.Schema.Type type = schemaClass.data?.__schema.types.Find((aType => aType.name == typeName));
             if (type?.fields == null || type.fields.Count == 0){
                 return false;
             }
@@ -475,6 +490,10 @@ namespace GraphQlClient.Core
             }
             
             public void CheckSubFields(Introspection.SchemaClass schemaClass){
+                if (schemaClass == null || schemaClass.data == null || schemaClass.data.__schema == null || schemaClass.data?.__schema.types == null)
+                {
+                    return;
+                }
                 Introspection.SchemaClass.Data.Schema.Type t = schemaClass.data.__schema.types.Find((aType => aType.name == type));
                 if (t.fields == null || t.fields.Count == 0){
                     hasSubField = false;
