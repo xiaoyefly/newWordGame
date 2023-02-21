@@ -8,21 +8,18 @@ using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 [ExecuteInEditMode]
-public class UIMainWrap_node_itemWrap :  MonoBehaviour
+public class UIWordleWrap_node_itemWrap :  MonoBehaviour
 {
-    public UnityEngine.UI.Text  txt_word;
-public UnityEngine.UI.Button  btn_enter;
-public UnityEngine.UI.Text  txt_info;
+    public UnityEngine.Transform  tr_grid;
+public UnityEngine.UI.Text  txt_word;
 
 
 #if UNITY_EDITOR
     void Reset()
     {
-	txt_word = transform.GetChild(0).GetChild(0).GetComponent<UnityEngine.UI.Text>();
+	tr_grid = transform.GetChild(0).GetComponent<UnityEngine.Transform>();
 
-btn_enter = transform.GetChild(1).GetComponent<UnityEngine.UI.Button>();
-
-txt_info = transform.GetChild(1).GetChild(0).GetComponent<UnityEngine.UI.Text>();
+txt_word = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<UnityEngine.UI.Text>();
 
 
     }
