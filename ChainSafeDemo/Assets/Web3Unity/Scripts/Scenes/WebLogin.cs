@@ -21,17 +21,40 @@ public class WebLogin : MonoBehaviour
     private bool CheckConnect = false;
     public void OnLogin()
     {
-        Web3Connect();
-        if (!CheckConnect)
+        try
         {
-            OnConnected();
+            Web3Connect();
         }
+        catch (Exception e)
+        {
+           
+        }
+
+        try
+        {
+            if (!CheckConnect)
+            {
+                OnConnected();
+            }
+        }
+        catch (Exception e)
+        {
+         
+        }
+#if UNITY_EDITOR
+        PlayerPrefs.SetString("Account", "0xb2875F6bdaAF5213E64380877871Ad25187678e7");
+        // reset login message
+        // SetConnectAccount("");
+        // load next scene
+        SceneManager.LoadScene("Main");
+#endif
     }
 
     async private void OnConnected()
     {
         CheckConnect = true;
         account = ConnectAccount();
+       
         while (account == "") {
             await new WaitForSeconds(1f);
             account = ConnectAccount();

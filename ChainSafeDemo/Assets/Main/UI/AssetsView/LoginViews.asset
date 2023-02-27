@@ -10,10 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a31ecbc45adc0d4291cb0c8521d0cd4, type: 3}
-  m_Name: MainViews
+  m_Name: LoginViews
   m_EditorClassIdentifier: 
   m_views:
-  - {fileID: 6292276705515023394, guid: 5dd676b84e6724d0ea20acacc30619ab, type: 3}
-  - {fileID: -417615094280314806, guid: 28b352d96825f423a8fc916b85528da7, type: 3}
-  - {fileID: 6292276705515023394, guid: 9596e27dff276c2428d8df2ed15de5cb, type: 3}
-  - {fileID: 2119328397539783700, guid: b8e244ce249834e53be75b199d3af540, type: 3}
+  - {fileID: 2595917635726239129, guid: 02e1c001cea754e33ad1876a3e21c392, type: 3}

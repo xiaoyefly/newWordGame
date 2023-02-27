@@ -27,6 +27,8 @@ public UnityEngine.Transform  tr_button_panel;
 public UnityEngine.Transform  tr_button;
 public UnityEngine.UI.Button  btn_my_follow;
 public UnityEngine.UI.Text  txt_follow_title;
+public UnityEngine.UI.Button  btn_chat;
+public UnityEngine.UI.Text  txt_chat_title;
 public UIMainWrap_node_itemWrap  node_item;
 
 
@@ -66,6 +68,10 @@ tr_button = transform.GetChild(0).GetChild(2).GetChild(3).GetChild(1).GetCompone
 btn_my_follow = transform.GetChild(0).GetChild(2).GetChild(3).GetChild(1).GetChild(0).GetComponent<UnityEngine.UI.Button>();
 
 txt_follow_title = transform.GetChild(0).GetChild(2).GetChild(3).GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetComponent<UnityEngine.UI.Text>();
+
+btn_chat = transform.GetChild(0).GetChild(2).GetChild(3).GetChild(1).GetChild(1).GetComponent<UnityEngine.UI.Button>();
+
+txt_chat_title = transform.GetChild(0).GetChild(2).GetChild(3).GetChild(1).GetChild(1).GetChild(0).GetChild(0).GetComponent<UnityEngine.UI.Text>();
 
 node_item = transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetOrAddComponent<UIMainWrap_node_itemWrap>();
 

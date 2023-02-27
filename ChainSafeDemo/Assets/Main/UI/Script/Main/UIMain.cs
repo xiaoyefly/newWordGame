@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using GraphQlClient.Core;
 using Jint;
+using Main.Logic.ChatAI;
 using Main.Logic.Player;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -46,6 +47,9 @@ public class UIMain : UIBase
         //
         wrap.btn_my_follow.onClick.RemoveListener(OnClickQuerry);
         wrap.btn_my_follow.onClick.AddListener(OnClickQuerry);
+        
+        wrap.btn_chat.onClick.RemoveListener(OnClickChat);
+        wrap.btn_chat.onClick.AddListener(OnClickChat);
     }
     
     void Start()
@@ -192,6 +196,32 @@ public class UIMain : UIBase
      {
          var hud = UIManager.Instance.GetHUD<UIRank>(UIManager.EViewPriority.HighRenderPriority);
          hud.Reference.ShowView();
+     }
+     
+     //点击打开AI聊天
+     void OnClickChat()
+     {
+         var hud = UIManager.Instance.GetHUD<UIChatAI>(UIManager.EViewPriority.HighRenderPriority);
+         hud.Reference.ShowView();
+         
+         // ChatAIPostData _postData = new ChatAIPostData
+         // {
+         //     model="text-davinci-003",
+         //     prompt="为下面的文本生成摘要:\n\n木星是距离太阳第五近的行星，也是太阳系中体积最大的行星，目前已知有92颗卫星。天文学家很早就发现了这颗行星，罗马人以他们的神称这颗行星为朱庇特。古代中国则称木星为岁星、太岁，取其绕行天球一周约为12年，与地支相同之故，且产生了岁星纪年法。到西汉时期，《史记‧天官书》作者天文学家司马迁从实际观测发现岁星呈青色，与“五行”学说联系在一起，正式把它命名为木星。木星是颗巨行星，质量是太阳的千分之一，但却是太阳系其他行星质量总和的2.5倍。太阳系的行星中，木星和土星是气体巨星（天王星和海王星是冰巨星）。",
+         //     temperature=0.7f,
+         //     max_tokens=512,
+         //     top_p=1,
+         //     frequency_penalty=0,
+         //     presence_penalty=0
+         // };
+         // // GetPostData(_postData,"", (answer) =>
+         // // {
+         // //     string result = answer;
+         // // });
+         // StartCoroutine( LChatAI.I.GetPostData(_postData,"", (answer) =>
+         // {
+         //     string result = answer;
+         //  }));
      }
 //     
 //     public GraphApi pokemonReference;
