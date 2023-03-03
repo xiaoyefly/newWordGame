@@ -1773,7 +1773,7 @@ GameObject:
   - component: {fileID: 7128844720339576194}
   - component: {fileID: 218202914821710567}
   m_Layer: 5
-  m_Name: bg
+  m_Name: img_item_bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1828,7 +1828,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c24e33ac8a246054b8f6d7303798c150, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3129,6 +3129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 543a1314dbffe4eabb8daccb298c4f3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  img_item_bg: {fileID: 218202914821710567}
   txt_word: {fileID: 3447938901463151442}
   btn_enter: {fileID: 2081447553185432234}
   txt_info: {fileID: 5308338865704239562}

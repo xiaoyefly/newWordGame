@@ -19,7 +19,10 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using Util;
-using Object = System.Object;
+using WebP.Experiment.Animation;
+
+// using WebP.Experiment.Animation;
+// using Object = System.Object;
 
 public class UIRank : UIBase
 {
@@ -76,7 +79,21 @@ public class UIRank : UIBase
                         var itemData = followedData.followings.edges[index1];
                         UIRankWrap_node_itemWrap nodeWrap = trans1.GetComponent<UIRankWrap_node_itemWrap>();
                         nodeWrap.txt_address.text =
-                            itemData.node.handle;
+                            itemData.node.profile.handle;
+                        string imgUrl = itemData.node.profile.avatar;
+                        if (!string.IsNullOrEmpty(imgUrl))
+                        {
+                            if (IsWebP(imgUrl))
+                            {
+                                LoadWebP(nodeWrap.img_avata, imgUrl);
+                                // StartCoroutine(LoadImageConvertToPNG(nodeWrap.img_avata, imgUrl));
+                            }
+                            else
+                            {
+                                StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                            }
+                         
+                        }
                         // LCyberConnect.I.GetProfileByHandle(itemData.node.handle, (profileDaata) =>
                         // {
                         //     if (profileDaata != null)
@@ -129,25 +146,101 @@ public class UIRank : UIBase
     
     private IEnumerator LoadImageConvertToPNG(Image image,String imageUrl)
     {
-        using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(imageUrl))
-        {
-            yield return www.SendWebRequest();
-            if (www.result == UnityWebRequest.Result.Success)
-            {
-                Texture2D webpTexture = DownloadHandlerTexture.GetContent(www);
-                byte[] pngData = webpTexture.EncodeToPNG();
-                string pngFilePath = Path.Combine(Application.persistentDataPath, "temp.png");
-                File.WriteAllBytes(pngFilePath, pngData);
-                
-               
-                StartCoroutine(LoadSpriteFromPNG(image,pngFilePath));
-            }
-        }
+        // var lWebStream = new WWW(imageUrl);
+        //
+        // yield return lWebStream;
+        //
+        // Error lError;
+        //
+        // Texture2D lTexture2D = Texture2DExt.CreateTexture2DFromWebP(lWebStream.bytes, true, true, out lError);
+        //
+        // if (lError == Error.Success)
+        // {
+        //     // m_Material.mainTexture = lTexture2D;
+        //     image.sprite = Sprite.Create(lTexture2D, new Rect(0, 0, lTexture2D.width, lTexture2D.height), Vector2.zero);
+        // }
+        // else
+        // {
+        //     Debug.LogError("Webp Load Error : " + lError.ToString());
+        // }
+        // var renderer=  WebP.Experiment.Animation.WebP.LoadTexturesAsync(imageUrl);
+        // if (renderer != null)
+        // {
+        //     renderer.Result.OnRender= (tex)=>
+        //     {
+        //         image.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.zero);
+        //     };
+        //     renderer.Result.Start();
+        // }
+
+        yield return null;
+        // using (WWW www = new WWW(imageUrl))
+        // {
+        //     yield return www;
+        //     // WebP.Experiment.Animation.WebP.LoadTexturesAsync()
+        //     
+        //     Texture2D webTexture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+        //     webTexture.LoadImage(www.bytes);
+        //     byte[] pngData = webTexture.EncodeToJPG(100);
+        //     Texture2D tex = new Texture2D(2, 2);
+        //     tex.LoadImage(pngData);
+        //     Texture2D spriteTex = new Texture2D(webTexture.width, webTexture.height, TextureFormat.RGBA32, false);
+        //     spriteTex.SetPixels(tex.GetPixels());
+        //     spriteTex.Apply();
+        //     image.sprite = Sprite.Create(spriteTex, new Rect(0, 0, webTexture.width, webTexture.height), Vector2.zero);
+        //     // if (www.result != UnityWebRequest.Result.ConnectionError && www.result != UnityWebRequest.Result.ProtocolError )
+        //     // {
+        //     // Texture2D webpTexture = DownloadHandlerTexture.GetContent(www);
+        //     // byte[] pngData = webpTexture.EncodeToPNG();
+        //     // string pngFilePath = Path.Combine(Application.persistentDataPath, "temp.png");
+        //     // File.WriteAllBytes(pngFilePath, pngData);
+        //     // //
+        //     // //
+        //     // StartCoroutine(LoadSpriteFromPNG(image,pngFilePath));
+        //     // }
+        // }
         // WWW www = new WWW(imageUrl);
         // yield return www;
         // image.sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), Vector2.zero);
     }
     
+    private async Task LoadWebP(Image image,string url)
+    {
+        WebPRendererWrapper<Texture2D> renderer = await WebP.Experiment.Animation.WebP.LoadTexturesAsync(url,
+            (texture) =>
+            {
+                OnWebPRender(image,texture, url);
+            });
+        // if (renderer != null)
+        // {
+        //     renderer.OnRender += texture => OnWebPRender(image,texture, url);
+        //     renderer.Start();
+        // }
+        // mRenderer = renderer;
+    }
+    
+    private void OnWebPRender(Image image,Texture2D texture, string url)
+    {
+        image.sprite=Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+        // image = texture;
+    }
+    // private async Task LoadWebP(Image image,string url)
+    // {
+    //     WebPRendererWrapper<Texture2D> renderer = await WebP.Experiment.Animation.WebP.LoadTexturesAsync(url);
+    //     if (renderer != null)
+    //     {
+    //         renderer.OnRender += texture =>
+    //         {
+    //             Sprite sprite = Sprite.Create(texture, new Rect(0,0,texture.width,texture.height),Vector2.zero);
+    //             image.sprite = sprite;
+    //         };
+    //     }
+    // }
+    
+    // private void OnWebPRender(Texture texture, string url)
+    // {
+    //     RawImage.texture = texture;
+    // }
     public IEnumerator LoadSpriteFromPNG(Image image,string imgPath)
     {
         Texture2D texture;

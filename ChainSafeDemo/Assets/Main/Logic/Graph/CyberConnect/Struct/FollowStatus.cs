@@ -11,8 +11,9 @@ namespace Main.Logic.CyberConnect
 {
     public class FollowStatus
     {
-        public string address;
-        public string handle;
+        public Address address;
+        public Profile profile;
+        // public string handle;
         // public proof: proof;
     }
 }

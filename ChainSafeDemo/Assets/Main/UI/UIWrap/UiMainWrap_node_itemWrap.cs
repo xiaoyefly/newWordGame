@@ -10,7 +10,8 @@ using UnityEngine.UI;
 [ExecuteInEditMode]
 public class UIMainWrap_node_itemWrap :  MonoBehaviour
 {
-    public UnityEngine.UI.Text  txt_word;
+    public UnityEngine.UI.Image  img_item_bg;
+public UnityEngine.UI.Text  txt_word;
 public UnityEngine.UI.Button  btn_enter;
 public UnityEngine.UI.Text  txt_info;
 
@@ -18,7 +19,9 @@ public UnityEngine.UI.Text  txt_info;
 #if UNITY_EDITOR
     void Reset()
     {
-	txt_word = transform.GetChild(0).GetChild(0).GetComponent<UnityEngine.UI.Text>();
+	img_item_bg = transform.GetChild(0).GetComponent<UnityEngine.UI.Image>();
+
+txt_word = transform.GetChild(0).GetChild(0).GetComponent<UnityEngine.UI.Text>();
 
 btn_enter = transform.GetChild(1).GetComponent<UnityEngine.UI.Button>();
 

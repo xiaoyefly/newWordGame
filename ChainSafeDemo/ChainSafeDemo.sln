@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unity.webp", "unity.webp.csproj", "{304fa3d6-a4c7-0693-a1f8-77be64e67270}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{cb2519c1-5108-48c3-9893-d42377250db3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{a9933855-3432-f6d7-30e0-f8354a70bbab}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example.csproj", "{af687977-dc08-fad7-c60f-9535f27dc035}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{7fee0b9f-9b75-7aaf-ae96-7dc2f87099a7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebP.Editor", "WebP.Editor.csproj", "{0229b9fa-388a-76d7-0ae9-51f6e0cb1676}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChainSafe_RPC_Tests", "ChainSafe_RPC_Tests.csproj", "{cd2c676d-2805-77bb-a2f1-457787323a1b}"
 EndProject
@@ -14,12 +20,18 @@ Global
 		Debug|Any CPU = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{304fa3d6-a4c7-0693-a1f8-77be64e67270}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{304fa3d6-a4c7-0693-a1f8-77be64e67270}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{cb2519c1-5108-48c3-9893-d42377250db3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{cb2519c1-5108-48c3-9893-d42377250db3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{a9933855-3432-f6d7-30e0-f8354a70bbab}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{a9933855-3432-f6d7-30e0-f8354a70bbab}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{af687977-dc08-fad7-c60f-9535f27dc035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{af687977-dc08-fad7-c60f-9535f27dc035}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7fee0b9f-9b75-7aaf-ae96-7dc2f87099a7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7fee0b9f-9b75-7aaf-ae96-7dc2f87099a7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0229b9fa-388a-76d7-0ae9-51f6e0cb1676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0229b9fa-388a-76d7-0ae9-51f6e0cb1676}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{cd2c676d-2805-77bb-a2f1-457787323a1b}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{cd2c676d-2805-77bb-a2f1-457787323a1b}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
