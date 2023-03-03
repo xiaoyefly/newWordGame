@@ -193,14 +193,14 @@ namespace PartySystems.UIParty
         public SharedNullableReference<T> GetHUD<T>(EViewPriority? newPriority = null) where T : UIBase
         {
             Type viewType = typeof(T);
-            NullableReference<T> requestedView = m_activeViews.Find((x) => x.Reference.GetType() == viewType) as NullableReference<T>;
+            var requestedView = m_activeViews.Find((x) => x.Reference.GetType() == viewType) ;
             if(requestedView != null)
             {
                 if(newPriority != null)
                 {
                     requestedView.Reference.transform.SetParent(m_priorityParentDict[newPriority.Value], false);
                 }
-                return requestedView.MakeSharedRef();
+                return requestedView.MakeSharedRefAs<T>();
             }else
             {
                 return RequestView<T>(newPriority != null ? newPriority.Value : EViewPriority.MediumRenderPriority);

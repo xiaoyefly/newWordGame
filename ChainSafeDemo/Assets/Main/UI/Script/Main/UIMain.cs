@@ -40,6 +40,13 @@ public class UIMain : UIBase
         UIUtil.UpdateWithTransfrom(wrap.node_item.transform, (trans, index1) =>
         {
             UIMainWrap_node_itemWrap tempWrap = trans.GetComponent<UIMainWrap_node_itemWrap>();
+            tempWrap.btn_enter.onClick.RemoveAllListeners();
+            tempWrap.btn_enter.onClick.AddListener(() =>
+            {
+                var hud = UIManager.Instance.GetHUD<UIWordle>(UIManager.EViewPriority.HighRenderPriority);
+                hud.Reference.ShowView();
+
+            });
         },LGameManager.I.AllGameDict.Count);
         //
         // wrap.btn_restart.onClick.RemoveListener(OnClickRestart);

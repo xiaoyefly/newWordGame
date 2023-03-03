@@ -8,7 +8,7 @@ namespace Main.Logic.ChatAI
     public class LChatAI : Main.Utility.Singleton<LChatAI>
     {
         private const string m_Api_Url = "https://api.openai.com/v1/completions";
-        private const string m_OpenAI_Key = "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";
+        private const string m_OpenAI_Key = "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";
 
         public void TestChat()
         {
@@ -70,6 +70,10 @@ namespace Main.Logic.ChatAI
                     _callback(_textback.choices[0].text);
                 }
 
+            }
+            else
+            {
+                Debug.Log("请求错误request.responseCode："+request.error);
             }
         }
 

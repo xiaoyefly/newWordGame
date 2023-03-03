@@ -99,6 +99,7 @@
      <Compile Include="Assets/Web3Unity/Scripts/Prefabs/Wallet/Web3WalletSignMessageExample.cs" />
      <Compile Include="Assets/Main/UI/Script/Main/InitMainScene.cs" />
      <Compile Include="Assets/Web3Unity/Scripts/Prefabs/Minter/Model/MintedNFT.cs" />
+     <Compile Include="Assets/Main/UI/Script/ChatAI/UIChatAI.cs" />
      <Compile Include="Assets/Web3Unity/Scripts/Library/ChainSafeRPC/Transactions/Transaction.cs" />
      <Compile Include="Assets/Web3Unity/Scripts/Prefabs/WebGL/WebGLGetBlockNumber.cs" />
      <Compile Include="Assets/Web3Unity/Scripts/Library/ChainSafeRPC/Providers/Formatter.cs" />
@@ -172,6 +173,7 @@
      <Compile Include="Assets/Main/Logic/Graph/CyberConnect/Struct/Address.cs" />
      <Compile Include="Assets/Scripts/Util/UIUtil.cs" />
      <Compile Include="Assets/Main/Logic/Graph/CyberConnect/Struct/Subscribe.cs" />
+     <Compile Include="Assets/Main/UI/UIWrap/UIChatAIWrap.cs" />
      <Compile Include="Assets/Scripts/ContractCalls/SignMenu.cs" />
      <Compile Include="Assets/lib/graphQl-client/Scripts/EventCallbacks/AllEventInfo.cs" />
      <Compile Include="Assets/Main/UI/UIWrap/UIWordleWrap.cs" />
@@ -257,8 +259,7 @@
      <Compile Include="Assets/Main/UI/Script/Main/UIMain.cs" />
      <Compile Include="Assets/Main/Util/Common/UnityMainThreadDispatcher.cs" />
      <Compile Include="Assets/Web3Unity/Scripts/Prefabs/WebGL/WebGLGetTxStatus.cs" />
-     <Compile Include="Assets/Main/UI/UIWrap/UIChatAIWrap.cs" />
-     <Compile Include="Assets/Main/UI/Script/ChatAI/UIChatAI.cs" />
+     <Compile Include="Assets/Main/Util/Common/ViewScaler.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/Main/UI/Prefab/Main" />
      <Folder Include="Assets/Web3Unity/Scripts/Prefabs/ERC721/legacyAll721" />
