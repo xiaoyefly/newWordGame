@@ -12,11 +12,14 @@ namespace Main.Logic.Player
             AllGameDict.Add("Wordle",new GameConfigData()
             {
                 GameName="Wordle",
+                IconPath="UI/Game/Wordle/ICON/Wordle_Icon"
+                
             });
         }
         public class GameConfigData
         {
             public string GameName = "";
+            public string IconPath = "";
         }
         
     }

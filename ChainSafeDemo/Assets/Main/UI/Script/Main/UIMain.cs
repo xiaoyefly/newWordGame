@@ -3,6 +3,7 @@ using PartySystems.UIParty;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using GraphQlClient.Core;
 using Jint;
@@ -37,9 +38,13 @@ public class UIMain : UIBase
         // InputWordDict.Clear();
         // myScore=0;
         // wrap.txt_score_val.text = "score:"+myScore.ToString();
+        var list = LGameManager.I.AllGameDict.ToList();
         UIUtil.UpdateWithTransfrom(wrap.node_item.transform, (trans, index1) =>
         {
+            var GameInfo = list[index1].Value;
             UIMainWrap_node_itemWrap tempWrap = trans.GetComponent<UIMainWrap_node_itemWrap>();
+            Sprite sprite=Resources.Load<Sprite>(GameInfo.IconPath);
+            tempWrap.img_item_bg.sprite = sprite;
             tempWrap.btn_enter.onClick.RemoveAllListeners();
             tempWrap.btn_enter.onClick.AddListener(() =>
             {
@@ -47,7 +52,7 @@ public class UIMain : UIBase
                 hud.Reference.ShowView();
 
             });
-        },LGameManager.I.AllGameDict.Count);
+        },list.Count);
         //
         // wrap.btn_restart.onClick.RemoveListener(OnClickRestart);
         // wrap.btn_restart.onClick.AddListener(OnClickRestart);

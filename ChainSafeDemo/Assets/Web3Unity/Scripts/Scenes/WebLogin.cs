@@ -21,6 +21,14 @@ public class WebLogin : MonoBehaviour
     private bool CheckConnect = false;
     public void OnLogin()
     {
+#if UNITY_EDITOR
+        PlayerPrefs.SetString("Account", "0xb2875F6bdaAF5213E64380877871Ad25187678e7");
+        // reset login message
+        // SetConnectAccount("");
+        // load next scene
+        SceneManager.LoadScene("Main");
+        return;
+#endif
         try
         {
             Web3Connect();
@@ -41,13 +49,7 @@ public class WebLogin : MonoBehaviour
         {
          
         }
-#if UNITY_EDITOR
-        PlayerPrefs.SetString("Account", "0xb2875F6bdaAF5213E64380877871Ad25187678e7");
-        // reset login message
-        // SetConnectAccount("");
-        // load next scene
-        SceneManager.LoadScene("Main");
-#endif
+
     }
 
     async private void OnConnected()

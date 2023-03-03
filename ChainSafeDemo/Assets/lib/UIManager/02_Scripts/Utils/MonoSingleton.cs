@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using PartySystems.UIParty;
+using UnityEngine.UI;
 
 namespace PartySystems.Utils
 {
@@ -28,8 +30,27 @@ namespace PartySystems.Utils
                     // Object not found, we create a temporary one
                     if (m_instance == null)
                     {
-                        Debug.LogWarning("No instance of " + typeof(T).ToString());
-                        return null;
+                        //uimanager特殊处理
+                        if (typeof(T) == typeof(UIManager))
+                        {
+                            GameObject prefab = Resources.Load<GameObject>("UIManager");
+                            if (prefab != null)
+                            {
+                                GameObject Obj = Instantiate(prefab);
+                                if (Obj != null)
+                                {
+                                    DontDestroyOnLoad(Obj);
+                                    m_instance = GameObject.FindObjectOfType(typeof(T)) as T;
+                                }
+                            }
+                        }
+
+                        if (m_instance == null)
+                        {
+                            Debug.LogWarning("No instance of " + typeof(T).ToString());
+                            return null;
+                        }
+                   
                     }
                     if (!s_isInitialized)
                     {

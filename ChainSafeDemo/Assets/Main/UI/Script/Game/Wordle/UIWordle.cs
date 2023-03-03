@@ -52,8 +52,16 @@ public class UIWordle : UIBase
         
         wrap.btn_my_follow.onClick.RemoveListener(OnClickQuerry);
         wrap.btn_my_follow.onClick.AddListener(OnClickQuerry);
+        
+        wrap.btn_close.onClick.RemoveAllListeners();
+        wrap.btn_close.onClick.AddListener(HideView);
     }
-    
+    void HideView()
+    {
+        // var hud = UIManager.Instance.GetHUD<UIRank>(UIManager.EViewPriority.HighRenderPriority);
+        // hud.Reference.CloseView();
+        CloseView();
+    }
     void Start()
     {
         
@@ -201,7 +209,7 @@ public class UIWordle : UIBase
         // GetPokemons();
     }
     
-    public GraphApi pokemonReference;
+    // public GraphApi pokemonReference;
     public async void GetPokemons(){
         //获得签证
         // GraphApi.Query createUser = pokemonReference.GetQueryByName("loginGetMessage", GraphApi.Query.Type.Mutation);
