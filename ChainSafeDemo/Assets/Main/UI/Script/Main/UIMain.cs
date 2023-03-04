@@ -207,6 +207,7 @@ public class UIMain : UIBase
      void OnClickQuerry()
      {
          var hud = UIManager.Instance.GetHUD<UIRank>(UIManager.EViewPriority.HighRenderPriority);
+         hud.Reference.SetInitData(LPlayer.I.Address);
          hud.Reference.ShowView();
      }
      

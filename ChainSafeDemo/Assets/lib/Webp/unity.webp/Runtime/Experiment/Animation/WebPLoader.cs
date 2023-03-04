@@ -40,6 +40,11 @@ namespace WebP.Experiment.Animation
                 {
                     bytes = www.bytes;
                 }
+
+                if (www != null)
+                {
+                    www.Dispose();
+                }
                 
             }
             else
@@ -57,6 +62,8 @@ namespace WebP.Experiment.Animation
             return bytes;
         }
 
+        
+       
         /// <summary>
         /// Example for async UnityWebRequest
         /// 
@@ -86,6 +93,25 @@ namespace WebP.Experiment.Animation
              return null;
         }
 
+        private static IEnumerator LoadWWWIEnumerator(String path)
+        {
+            WWW www = new WWW(path);
+            while (!www.isDone)
+            {
+                // yield return null;
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            if (www.error != null)
+            {
+                yield return null;
+            }
+            else
+            {
+                yield return www;
+            }
+        
+        }
         // private static async Task<WWW> LoadAsync(string path)
         // {
         //     using (WWW www = new WWW(path))

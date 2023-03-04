@@ -22,7 +22,7 @@ public class WebLogin : MonoBehaviour
     public void OnLogin()
     {
 #if UNITY_EDITOR
-        PlayerPrefs.SetString("Account", "0xb2875F6bdaAF5213E64380877871Ad25187678e7");
+        PlayerPrefs.SetString("Account", "0x5fd9b0B7e15B4d106624ea9CF96602996c9c344D");
         // reset login message
         // SetConnectAccount("");
         // load next scene

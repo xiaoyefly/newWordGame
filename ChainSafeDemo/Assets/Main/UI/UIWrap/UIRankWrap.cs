@@ -20,15 +20,15 @@ public UIRankWrap_node_itemWrap  node_item;
 #if UNITY_EDITOR
     void Reset()
     {
-	txt_title = transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<UnityEngine.UI.Text>();
+	txt_title = transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<UnityEngine.UI.Text>();
 
-btn_close = transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<UnityEngine.UI.Button>();
+btn_close = transform.GetChild(0).GetChild(1).GetChild(1).GetComponent<UnityEngine.UI.Button>();
 
-tr_title = transform.GetChild(0).GetChild(1).GetComponent<UnityEngine.Transform>();
+tr_title = transform.GetChild(0).GetChild(2).GetComponent<UnityEngine.Transform>();
 
-tr_followed_list = transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetComponent<UnityEngine.Transform>();
+tr_followed_list = transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetComponent<UnityEngine.Transform>();
 
-node_item = transform.GetChild(0).GetChild(1).GetChild(0).GetChild(0).GetChild(0).GetOrAddComponent<UIRankWrap_node_itemWrap>();
+node_item = transform.GetChild(0).GetChild(2).GetChild(0).GetChild(0).GetChild(0).GetOrAddComponent<UIRankWrap_node_itemWrap>();
 
     }
 #endif

@@ -24,5 +24,6 @@ namespace Main.Logic.CyberConnect
         public FollowConnection followers;
         public bool isSubscribedByMe;
         public bool isFollowedByMe;
+        public MetadataDetail metadataInfo;
     }
 }

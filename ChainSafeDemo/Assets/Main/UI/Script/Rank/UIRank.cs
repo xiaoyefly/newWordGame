@@ -2,24 +2,27 @@
 using PartySystems.UIParty;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+// using System.Net;
+// using System.Text.RegularExpressions;
+// using System.Threading;
+// using System.Threading.Tasks;
 using GraphQlClient.Core;
-using Jint;
-using Main.Logic.CyberConnect;
+// using Jint;
+// using Main.Logic.CyberConnect;
 using Main.Logic.Graph.CyberConnect;
 using Main.Logic.Player;
 using Main.Utility;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+// using Newtonsoft.Json;
+// using Newtonsoft.Json.Linq;
+// using OpenCover.Framework.Model;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 using Util;
-using WebP.Experiment.Animation;
+// using Web3Unity.Scripts.Library.IPFS; 
+// using WebP.Experiment.Animation;
+using File = System.IO.File;
 
 // using WebP.Experiment.Animation;
 // using Object = System.Object;
@@ -29,6 +32,8 @@ public class UIRank : UIBase
     private UIRankWrap wrap;
     
     public GraphApi pokemonReference;
+
+    private string RequestAddress = "";
     public override void OnInit()
     {
         wrap = transform.GetComponent<UIRankWrap>();
@@ -36,95 +41,133 @@ public class UIRank : UIBase
         wrap.btn_close.onClick.AddListener(HideView);
     }
 
+    public void SetInitData(string address)
+    {
+        RequestAddress = address;
+        if (RequestAddress == LPlayer.I.Address)
+        {
+            wrap.txt_title.text = "Following";
+        }
+        else
+        {
+            // wrap.txt_title.text = "Profile";
+        }
+    }
     void HideView()
     {
-        // var hud = UIManager.Instance.GetHUD<UIRank>(UIManager.EViewPriority.HighRenderPriority);
-        // hud.Reference.CloseView();
         CloseView();
     }
     protected override void OnShown()
     {
-        // UIUtil.UpdateWithTransfrom(wrap.node_item.transform, (trans1, index1) =>
-        // {
-        //     Transform tr_grid = trans1.Find("tr_grid");
-        //     girdDataDict[index1] = new Dictionary<int, Text>();
-        //     UIUtil.UpdateWithTransfrom(tr_grid, (trans2, index2) =>
-        //     {
-        //         Text txt_word = trans2.Find("bg/txt_word").GetComponent<Text>();
-        //         txt_word.text = "";
-        //         girdDataDict[index1][index2] = txt_word;
-        //     },ColCount);
-        // },RowCount);
         RequestFollowInfo();
     }
 
-    private Dictionary<string, object> getsdfa(Dictionary<string,object> schemaDict,string introspection)
-    {
-        Dictionary<string, object> schemaClass = JsonConvert.DeserializeObject<Dictionary<string, object>>(introspection);
-        // if()
-        return null;
-    }
-    
+    private List<string> myFolloringList = new List<string>();
     async void RequestFollowInfo()
     {
         //获取关注列表
         LCyberConnect.I.GetFollowingByAddress(
-            LPlayer.I.Address == "" ? "0x591e0850a4D19045388F37E5D1BA9be411b22a57" : LPlayer.I.Address,
+            RequestAddress == "" ? "0x591e0850a4D19045388F37E5D1BA9be411b22a57" : RequestAddress,
             (followedData) =>
             {
+                int Count = 0;
+                if (followedData!=null && followedData.followingCount > 0 && followedData.followings.edges.Count > 0)
+                {
+                    Count = followedData.followings.edges.Count;
+                }
+
+                if (RequestAddress == LPlayer.I.Address)
+                {
+                    myFolloringList.Clear();
+                    if (followedData!=null && followedData.followingCount > 0 && followedData.followings.edges.Count>0)
+                    {
+                        foreach (var VARIABLE in followedData.followings.edges)
+                        {
+                            myFolloringList.Add(VARIABLE.node.profile.handle);
+                        }
+                    }
+                   
+                }
                 UnityMainThreadDispatcher.Instance().Enqueue(() =>
                 {
                     UIUtil.UpdateWithTransfrom(wrap.node_item.transform, (trans1, index1) =>
                     {
                         var itemData = followedData.followings.edges[index1];
                         UIRankWrap_node_itemWrap nodeWrap = trans1.GetComponent<UIRankWrap_node_itemWrap>();
+                        nodeWrap.btn_item.onClick.RemoveAllListeners();
+                        nodeWrap.btn_item.onClick.AddListener(() =>
+                        {
+                            SetInitData(itemData.node.profile.owner.address);
+                            wrap.txt_title.text = itemData.node.profile.handle;
+                            RequestFollowInfo();
+                        });
+                        if (myFolloringList.Contains(itemData.node.profile.handle))
+                        {
+                            nodeWrap.txt_word.text = "Following";
+                        }
+                        else
+                        {
+                            nodeWrap.txt_word.text = "Follow";
+                        }
                         nodeWrap.txt_address.text =
                             itemData.node.profile.handle;
                         string imgUrl = itemData.node.profile.avatar;
+                        nodeWrap.img_avata.gameObject.SetActive(false);
+                        if (string.IsNullOrEmpty(imgUrl))
+                        {
+                            if (itemData.node.profile.metadataInfo != null)
+                            {
+                                imgUrl=itemData.node.profile.metadataInfo.avatar;
+                            }
+                        }
+                        if (imgUrl.StartsWith("ipfs://"))
+                        {
+                            imgUrl = imgUrl.Replace("ipfs://", "https://ipfs.io/ipfs/");
+                        } 
                         if (!string.IsNullOrEmpty(imgUrl))
                         {
-                            if (IsWebP(imgUrl))
+                            StartCoroutine(IsWebPIEnum(imgUrl, (isWebp) =>
                             {
-                                LoadWebP(nodeWrap.img_avata, imgUrl);
-                                // StartCoroutine(LoadImageConvertToPNG(nodeWrap.img_avata, imgUrl));
-                            }
-                            else
-                            {
-                                StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
-                            }
-                         
-                        }
-                        // LCyberConnect.I.GetProfileByHandle(itemData.node.handle, (profileDaata) =>
-                        // {
-                        //     if (profileDaata != null)
-                        //     {
-                        //         if (profileDaata.owner != null)
-                        //         {
-                        //             nodeWrap.txt_address.text =
-                        //                 profileDaata.handle;
-                        //         }
-                        //         else
-                        //         {
-                        //             nodeWrap.txt_address.text = "空地址";
-                        //         }
-                        //
-                        //         // string imgUrl = profileDaata.avatar;
-                        //         // if (!string.IsNullOrEmpty(imgUrl))
-                        //         // {
-                        //         //     if (IsWebP(imgUrl))
-                        //         //     {
-                        //         //         StartCoroutine(LoadImageConvertToPNG(nodeWrap.img_avata, imgUrl));
-                        //         //     }
-                        //         //     else
-                        //         //     {
-                        //         //         StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
-                        //         //     }
-                        //         //  
-                        //         // }
-                        //     }
-                        // });
+                                if (isWebp)
+                                {
+                                    // LoadWebP(nodeWrap.img_avata, imgUrl);
+                                    StartCoroutine(LoadImageConvertToPNGFromWeb1(nodeWrap.img_avata, imgUrl));
+                                }
+                                else
+                                {
+                                    StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                                    // StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                                    // StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                                    // StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                                    // StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                                    // StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                                    // StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                                    // StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                                    // StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                                }
+                            }));
+                            // if (IsWebP(imgUrl))
+                            // {
+                            //     // LoadWebP(nodeWrap.img_avata, imgUrl);
+                            //     StartCoroutine(LoadImageConvertToPNGFromWeb1(nodeWrap.img_avata, imgUrl));
+                            // }
+                            // else
+                            // {
+                            //     StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                            //     StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                            //     StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                            //     StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                            //     StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                            //     StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                            //     StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                            //     StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                            //     StartCoroutine(LoadImageConvertToPNGFromWeb(nodeWrap.img_avata, imgUrl));
+                            // }
 
-                    },followedData.followingCount);
+                        }
+                       
+
+                    },Count);
                 });
             });
     }
@@ -139,107 +182,41 @@ public class UIRank : UIBase
             {
                 Texture2D texture = DownloadHandlerTexture.GetContent(www);
                 image.sprite= Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+                image.gameObject.SetActive(true);
                 // do something with the sprite, e.g. assign it to a GameObject's SpriteRenderer component
             }
+            www.Dispose();
         }
     }
-    
-    private IEnumerator LoadImageConvertToPNG(Image image,String imageUrl)
+    private IEnumerator LoadImageConvertToPNGFromWeb1(Image image,String imageUrl)
     {
-        // var lWebStream = new WWW(imageUrl);
-        //
-        // yield return lWebStream;
-        //
-        // Error lError;
-        //
-        // Texture2D lTexture2D = Texture2DExt.CreateTexture2DFromWebP(lWebStream.bytes, true, true, out lError);
-        //
-        // if (lError == Error.Success)
-        // {
-        //     // m_Material.mainTexture = lTexture2D;
-        //     image.sprite = Sprite.Create(lTexture2D, new Rect(0, 0, lTexture2D.width, lTexture2D.height), Vector2.zero);
-        // }
-        // else
-        // {
-        //     Debug.LogError("Webp Load Error : " + lError.ToString());
-        // }
-        // var renderer=  WebP.Experiment.Animation.WebP.LoadTexturesAsync(imageUrl);
-        // if (renderer != null)
-        // {
-        //     renderer.Result.OnRender= (tex)=>
-        //     {
-        //         image.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), Vector2.zero);
-        //     };
-        //     renderer.Result.Start();
-        // }
-
-        yield return null;
-        // using (WWW www = new WWW(imageUrl))
-        // {
-        //     yield return www;
-        //     // WebP.Experiment.Animation.WebP.LoadTexturesAsync()
-        //     
-        //     Texture2D webTexture = new Texture2D(2, 2, TextureFormat.RGBA32, false);
-        //     webTexture.LoadImage(www.bytes);
-        //     byte[] pngData = webTexture.EncodeToJPG(100);
-        //     Texture2D tex = new Texture2D(2, 2);
-        //     tex.LoadImage(pngData);
-        //     Texture2D spriteTex = new Texture2D(webTexture.width, webTexture.height, TextureFormat.RGBA32, false);
-        //     spriteTex.SetPixels(tex.GetPixels());
-        //     spriteTex.Apply();
-        //     image.sprite = Sprite.Create(spriteTex, new Rect(0, 0, webTexture.width, webTexture.height), Vector2.zero);
-        //     // if (www.result != UnityWebRequest.Result.ConnectionError && www.result != UnityWebRequest.Result.ProtocolError )
-        //     // {
-        //     // Texture2D webpTexture = DownloadHandlerTexture.GetContent(www);
-        //     // byte[] pngData = webpTexture.EncodeToPNG();
-        //     // string pngFilePath = Path.Combine(Application.persistentDataPath, "temp.png");
-        //     // File.WriteAllBytes(pngFilePath, pngData);
-        //     // //
-        //     // //
-        //     // StartCoroutine(LoadSpriteFromPNG(image,pngFilePath));
-        //     // }
-        // }
-        // WWW www = new WWW(imageUrl);
-        // yield return www;
-        // image.sprite = Sprite.Create(www.texture, new Rect(0, 0, www.texture.width, www.texture.height), Vector2.zero);
+        yield return WebP.Experiment.Animation.WebP.LoadIEnumerator(imageUrl,(texture) =>
+        {
+            image.sprite=Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+            image.gameObject.SetActive(true);
+        });
     }
     
-    private async Task LoadWebP(Image image,string url)
-    {
-        WebPRendererWrapper<Texture2D> renderer = await WebP.Experiment.Animation.WebP.LoadTexturesAsync(url,
-            (texture) =>
-            {
-                OnWebPRender(image,texture, url);
-            });
-        // if (renderer != null)
-        // {
-        //     renderer.OnRender += texture => OnWebPRender(image,texture, url);
-        //     renderer.Start();
-        // }
-        // mRenderer = renderer;
-    }
-    
-    private void OnWebPRender(Image image,Texture2D texture, string url)
-    {
-        image.sprite=Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-        // image = texture;
-    }
     // private async Task LoadWebP(Image image,string url)
     // {
-    //     WebPRendererWrapper<Texture2D> renderer = await WebP.Experiment.Animation.WebP.LoadTexturesAsync(url);
-    //     if (renderer != null)
-    //     {
-    //         renderer.OnRender += texture =>
-    //         {
-    //             Sprite sprite = Sprite.Create(texture, new Rect(0,0,texture.width,texture.height),Vector2.zero);
-    //             image.sprite = sprite;
-    //         };
-    //     }
+    //     // Thread thread = new Thread(() =>
+    //     // {
+    //         ThreadLoadWebP(image,url);
+    //     // });
+    //     //
+    //     // // threads.Add(thread);
+    //     // thread.Start();
+    //   
     // }
-    
-    // private void OnWebPRender(Texture texture, string url)
+
+    // private async Task ThreadLoadWebP(Image image, string url)
     // {
-    //     RawImage.texture = texture;
+    //     WebPRendererWrapper<Texture2D> renderer = await WebP.Experiment.Animation.WebP.LoadTexturesAsync(url,
+    //         (texture) =>
+    //         {
+    //             image.sprite=Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+    //             image.gameObject.SetActive(true);
+    //         });
     // }
     public IEnumerator LoadSpriteFromPNG(Image image,string imgPath)
     {
@@ -278,20 +255,94 @@ public class UIRank : UIBase
                 Debug.LogError("Failed to load texture from " + url + ": " + www.error);
                 return null;
             }
-            return DownloadHandlerTexture.GetContent(www);
+
+            Texture2D result = DownloadHandlerTexture.GetContent(www);
+            www.Dispose();
+            return result;
         }
+        
     }
+
+    public async void IsWebP111(string imgurl,Action<bool> handle)
+    {
+      // IPFS  
+        // ipfsClient ipfsClient = new IpfsClient();
+        //
+        // // Retrieve the file from IPFS
+        // byte[] fileBytes = await ipfsClient.FileSystem.ReadAllBytesAsync(ipfsHash);
+        //
+        // // Convert the file bytes to a string
+        // string fileString = System.Text.Encoding.UTF8.GetString(fileBytes);
+        //
+        // // Deserialize the JSON response
+        // IpfsResponse ipfsResponse = JsonConvert.DeserializeObject<IpfsResponse>(fileString);
+        //
+        // // Display the response
+        // Debug.Log(ipfsResponse.Hash);
+    }
+    // public async void IsWebP(string imgurl,Action<bool> handle)
+    // {
+    //     bool isWebP = false;
+    //     
+    //     WebClient client = new WebClient();
+    //     client.DownloadDataCompleted += (sender, e) => {
+    //         if (e.Error != null || e.Cancelled)
+    //         {
+    //             handle(false);
+    //         }
+    //         else
+    //         {
+    //             byte[] header = e.Result.Take(12)?.ToArray();
+    //             if (header!=null && header.Length>11 && header[0] == 'R' && header[1] == 'I' && header[2] == 'F' && header[3] == 'F' &&
+    //                 header[8] == 'W' && header[9] == 'E' && header[10] == 'B' && header[11] == 'P')
+    //             {
+    //                 handle(true);
+    //             }
+    //             else
+    //             {
+    //                 handle(false);
+    //             }
+    //         }
+    //     };
+    //
+    //     client.DownloadDataAsync(new Uri(imgurl));
+    //
+    //     await Task.Delay(TimeSpan.FromSeconds(3));
+    //
+    //     if (client.IsBusy)
+    //     {
+    //         client.CancelAsync();
+    //         // handle(false);
+    //         // Handle cancellation
+    //     }
+    //     
+    //     client.Dispose();
+    // }
     
-    public bool IsWebP(string imgurl)
+    public IEnumerator IsWebPIEnum(string imgurl, Action<bool> handle)
     {
         bool isWebP = false;
-        WebClient client = new WebClient();
-        byte[] header = client.DownloadData(imgurl).Take(12).ToArray();
-        if (header[0] == 'R' && header[1] == 'I' && header[2] == 'F' && header[3] == 'F' &&
-            header[8] == 'W' && header[9] == 'E' && header[10] == 'B' && header[11] == 'P')
+
+        UnityWebRequest webRequest = UnityWebRequest.Get(imgurl);
+        AsyncOperation asyncOp = webRequest.SendWebRequest();
+
+        while (!asyncOp.isDone)
         {
-            isWebP = true;
+            // Wait for async operation to complete
+            yield return null;
         }
-        return isWebP;
+
+        if (webRequest.result == UnityWebRequest.Result.Success)
+        {
+            byte[] header = webRequest.downloadHandler.data.Take(12)?.ToArray();
+            if (header != null && header.Length > 11 && header[0] == 'R' && header[1] == 'I' && header[2] == 'F' && header[3] == 'F' &&
+                header[8] == 'W' && header[9] == 'E' && header[10] == 'B' && header[11] == 'P')
+            {
+                isWebP = true;
+            }
+        }
+
+        webRequest.Dispose();
+        handle(isWebP);
     }
 }

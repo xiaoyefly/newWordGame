@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 [ExecuteInEditMode]
-public class UIRankWrap_node_itemWrap :  MonoBehaviour
+public class node_itemWrap :  MonoBehaviour
 {
     public UnityEngine.UI.Button  btn_item;
 public UnityEngine.UI.Image  img_avata;
