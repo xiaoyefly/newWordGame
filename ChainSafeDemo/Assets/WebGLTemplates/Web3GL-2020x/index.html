@@ -6,6 +6,11 @@
     <title>Unity WebGL Player | {{{ PRODUCT_NAME }}}</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <style>
+      body {
+        background-color: black;
+      }
+    </style>
   </head>
   <body>
     <div id="unity-container" class="unity-desktop">
@@ -87,10 +92,28 @@
         // Avoid draining fillrate performance on mobile devices,
         // and default/override low DPI mode on mobile browsers.
         config.devicePixelRatio = 1;
-        unityShowBanner('WebGL builds are not supported on mobile devices.');
+        // unityShowBanner('WebGL builds are not supported on mobile devices.');
       } else {
-        canvas.style.width = window.innerWidth+"px";
-        canvas.style.height = window.innerHeight+"px";
+        // canvas.style.width = window.innerWidth+"px";
+        // canvas.style.height = window.innerHeight+"px";
+
+
+        function resizeCanvas() {
+          if (window.innerWidth / window.innerHeight > 1920 / 1080) {
+            canvas.style.width = window.innerHeight * 1920 / 1080 + "px";
+            canvas.style.height = window.innerHeight + "px";
+          } else {
+            canvas.style.width = window.innerWidth + "px";
+            canvas.style.height = window.innerWidth * 1080 / 1920 + "px";
+          }
+
+          container.style.backgroundColor = "black";
+        }
+        window.addEventListener('resize', function() {
+          resizeCanvas();
+        });
+        resizeCanvas();
+        
       }
 #if BACKGROUND_FILENAME
       canvas.style.background = "url('" + buildUrl + "/{{{ BACKGROUND_FILENAME.replace(/'/g, '%27') }}}') center / cover";

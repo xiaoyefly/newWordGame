@@ -262,6 +262,9 @@
      <Compile Include="Assets/Main/UI/Script/Main/UIMain.cs" />
      <Compile Include="Assets/Main/Util/Common/UnityMainThreadDispatcher.cs" />
      <Compile Include="Assets/Web3Unity/Scripts/Prefabs/WebGL/WebGLGetTxStatus.cs" />
+     <Compile Include="Assets/Main/Logic/Graph/CyberConnect/LCyberConnect.Operation.cs" />
+     <Compile Include="Assets\Main\Map\Camera\Cam360View.cs" />
+     <Compile Include="Assets\Main\Map\Player\ThirdPlayerMove.cs" />
      <Folder Include="Assets" />
      <Folder Include="Assets/Main/UI/Prefab/Main" />
      <Folder Include="Assets/Web3Unity/Scripts/Prefabs/ERC721/legacyAll721" />
@@ -392,7 +395,6 @@
      <Folder Include="Assets/lib/cyberConnect/node_modules/@cyberlab/cyberconnect-v2/lib" />
      <Folder Include="Assets/lib/Webp/unity.webp/Plugins/WebGL/src/mux" />
      <Folder Include="Assets/Web3Unity/Scripts/Library/ChainSafeRPC/Blocks" />
-     <Folder Include="Assets/Main" />
      <Folder Include="Assets/Main/Font" />
      <Folder Include="Assets/lib/cyberConnect/node_modules/@cyberlab/cyberconnect-v2" />
      <Folder Include="Assets/StreamingAssets/lib/cyberConnect/node_modules" />
@@ -501,6 +503,7 @@
      <Folder Include="Assets/StreamingAssets/lib/graphQl-client/Demo" />
      <None Include="Assets/WebGLTemplates/Web3GL-2020x/web3/metadata.json" />
      <Folder Include="Assets/lib/cyberConnect/node_modules/@ethersproject/bignumber/src.ts" />
+     <None Include="Assets/CyberConnect 1schema.txt" />
      <None Include="Assets/StreamingAssets/lib/cyberConnect/node_modules/@ethersproject/strings/package.json" />
      <Folder Include="Assets/lib/cyberConnect/node_modules/@ethersproject/bignumber" />
      <Folder Include="Assets/Main/UI/Sprite/login" />

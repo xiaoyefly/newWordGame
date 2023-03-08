@@ -100,6 +100,7 @@ public class UIRank : UIBase
                             SetInitData(itemData.node.profile.owner.address);
                             wrap.txt_title.text = itemData.node.profile.handle;
                             RequestFollowInfo();
+                            // StartCoroutine(LCyberConnect.I.LoadJSFile("lib/cyberConnect/node_modules/@cyberlab/cyberconnect-v2/lib/require.js"));
                         });
                         if (myFolloringList.Contains(itemData.node.profile.handle))
                         {
